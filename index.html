@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>องุ่นหวาน Studio⭐️</title>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Mitr:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* --- โครงสร้างหลัก (ห้ามแก้) --- */
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+:root {
+  --primary: #FCFFFF; 
+  --secondary: #DCD2F5; 
+  --bg-main: #EDE2FB; 
+  --bg-card: #EADBFB; 
+  --border-color: rgba(176,38,255,0.25);
+  --text-muted: #9872A3;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Kanit', sans-serif;
+  background: var(--bg-main); color: #fff;
+  overflow-x: hidden;
+  padding-bottom: 110px; 
+}
+
+/* Background Glow & Particles (ห้ามแก้) */
+.bg-glow-1 { position: fixed; top: -100px; left: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(176,38,255,0.15) 0%, rgba(0,0,0,0) 70%); z-index: -1; pointer-events: none; }
+.bg-glow-2 { position: fixed; bottom: 20%; right: -150px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,210,255,0.1) 0%, rgba(0,0,0,0) 70%); z-index: -1; pointer-events: none; }
+#pts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.pt { position: absolute; animation: ptUp linear infinite; opacity: 0; }
+@keyframes ptUp { 0% { transform: translateY(105vh); opacity: 0; } 8% { opacity: 0.45; } 92% { opacity: 0.45; } 100% { transform: translateY(-8vh) rotate(360deg); opacity: 0; } }
+
+/* --- HERO & TABS (ห้ามแก้โครงสร้าง) --- */
+.hero {
+  background: linear-gradient(135deg, rgba(176,38,255,0.2) 0%, rgba(0,210,255,0.1) 100%);
+  padding: 40px 20px 55px; 
+  text-align: center;
+  position: relative;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 40px;
+  box-shadow: 0 4px 30px rgba(176,38,255,0.1);
+}
+.hero-title { font-family: 'Mitr', sans-serif; font-size: 32px; font-weight: 700; color: #fff; margin-bottom: 4px; text-shadow: 0 0 15px rgba(176,38,255,0.4); }
+.hero-sub { font-size: 13px; color: rgba(255,255,255,0.85); }
+
+.tab-container {
+  position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%);
+  display: flex; background: var(--bg-card); border: 1px solid var(--border-color);
+  border-radius: 30px; padding: 4px; width: 260px; z-index: 10; box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+.tab-btn { flex: 1; padding: 8px 0; border-radius: 25px; border: none; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; background: transparent; color: var(--text-muted); }
+.tab-btn.active { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; box-shadow: 0 2px 10px rgba(176,38,255,0.3); }
+
+/* --- CONTENT (ห้ามแก้โครงสร้าง) --- */
+.content { max-width: 600px; margin: 0 auto; padding: 0 20px 50px; position: relative; z-index: 5; }
+.tab-content { display: none; animation: fadeIn 0.3s ease; }
+.tab-content.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* --- GRID & CARDS (แก้ไข CSS เพื่อรองรับรูปแยก) --- */
+.sh { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding: 0 5px; }
+.sh-left { display: flex; align-items: center; gap: 12px; }
+.sh-line { width: 4px; height: 22px; background: linear-gradient(180deg, var(--primary), var(--secondary)); border-radius: 4px; }
+.sh h2 { font-size: 18px; font-weight: 700; color: #fff; }
+
+/* ปุ่มดูเพิ่มเติม */
+.btn-more {
+  background: rgba(255,255,255,0.1); border: 1px solid var(--border-color);
+  color: var(--primary); padding: 4px 12px; border-radius: 12px; font-size: 11px; cursor: pointer;
+  font-family: inherit;
+}
+
+.grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
+
+/* ปรับปรุง Card */
+.item-card {
+  background: var(--bg-card); border: 1.5px solid rgba(255,255,255,0.08);
+  border-radius: 16px; padding: 12px; /* ลด padding ลงเล็กน้อย */
+  position: relative; cursor: pointer; transition: all 0.2s ease; display: flex; flex-direction: column;
+}
+.item-card:active { transform: scale(0.96); }
+.item-card.selected { border-color: var(--primary); background: linear-gradient(145deg, rgba(176,38,255,0.1) 0%, var(--bg-card) 100%); }
+
+/* Check Circle */
+.check-circle { position: absolute; top: 10px; right: 10px; width: 22px; height: 22px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); display: flex; justify-content: center; align-items: center; z-index: 2; background: rgba(0,0,0,0.3); }
+.item-card.selected .check-circle { background: var(--primary); border-color: var(--primary); }
+.check-circle::after { content: '✓'; color: #8b5cf6; font-size: 12px; font-weight: bold; opacity: 0; }
+.item-card.selected .check-circle::after { opacity: 1; }
+
+/* แก้ไข CSS รูปภาพแยกชิ้น */
+.card-icon { 
+    width: 100%; 
+    aspect-ratio: 1/1; /* บังคับรูปเป็นสี่เหลี่ยมจัตุรัส */
+    border-radius: 12px; 
+    margin-bottom: 10px; 
+    object-fit: cover; /* ถ้ารูปไม่จัตุรัส จะตัดกลางรูปให้พอดี */
+    background: rgba(255,255,255,0.05); /* เผื่อรูปโหลดไม่ขึ้น */
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.card-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; color: #fff; line-height: 1.3; }
+.card-desc { font-size: 11px; color: var(--text-muted); margin-bottom: 12px; flex-grow: 1; line-height: 1.4; }
+.card-price { align-self: flex-start; background: rgba(176,38,255,0.15); color: #e5a3ff; font-weight: 600; font-size: 13px; padding: 4px 10px; border-radius: 8px; }
+
+.cat-divider { grid-column: 1 / -1; margin: 25px 0 15px; display: flex; align-items: center; justify-content: space-between; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 15px; }
+.cat-divider span { font-size: 16px; font-weight: 600; color: var(--secondary); }
+
+/* --- MODALS & BOTTOM BAR (ห้ามแก้โครงสร้าง) --- */
+.bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(18, 14, 38, 0.95); backdrop-filter: blur(15px); border-top: 1px solid var(--primary); padding: 15px 24px; display: flex; justify-content: space-between; align-items: center; transform: translateY(100%); transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1000; box-shadow: 0 -10px 30px rgba(0,0,0,0.5); }
+.bottom-bar.active { transform: translateY(0); }
+.bb-info { display: flex; flex-direction: column; }
+.bb-count { font-size: 12px; color: var(--text-muted); margin-bottom: 2px; }
+.bb-total { font-size: 20px; font-weight: 700; color: #fff; }
+.bb-total span:first-child { color: var(--primary); font-size: 16px; margin-right: 2px; }
+.bb-btn { background: linear-gradient(135deg, var(--primary), #d946ef); color: #fff; border: none; border-radius: 25px; padding: 10px 24px; font-size: 16px; font-weight: 600; font-family: inherit; cursor: pointer; }
+
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000; display: none; justify-content: center; align-items: center; padding: 20px; opacity: 0; transition: opacity 0.3s; }
+.modal-overlay.show { display: flex; opacity: 1; }
+.modal-box { background: var(--bg-card); border: 2px solid var(--primary); border-radius: 20px; width: 100%; max-width: 480px; padding: 20px; max-height: 85vh; overflow-y: auto; position: relative; transform: scale(0.9); transition: transform 0.3s; box-shadow: 0 10px 30px rgba(176,38,255,0.3); }
+.modal-overlay.show .modal-box { transform: scale(1); }
+
+/* Custom Scrollbar */
+.modal-box::-webkit-scrollbar { width: 5px; }
+.modal-box::-webkit-scrollbar-track { background: transparent; }
+.modal-box::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+</style>
+</head>
+<body>
+<div class="bg-glow-1"></div><div class="bg-glow-2"></div><div id="pts"></div>
+
+<div class="hero">
+  <div class="hero-title">Wanderer_shop</div>
+  <div class="hero-sub">จำหน่ายฟอนต์ลายมือหลากหลายเครือ🪽</div>
+  <div class="tab-container">
+    <button class="tab-btn active" id="btn-info" onclick="switchTab('info')">แนะนำ</button>
+    <button class="tab-btn" id="btn-products" onclick="switchTab('products')">สินค้า</button>
+  </div>
+</div>
+
+<div class="content">
+  <div id="tab-info" class="tab-content active">
+    <div class="sh">
+        <div class="sh-left"><div class="sh-line"></div><h2>สินค้าแนะนำพิเศษ</h2></div>
+    </div>
+    <div class="grid-container" id="recommendGrid">
+      </div>
+  </div>
+
+  <div id="tab-products" class="tab-content">
+    <div id="productSections">
+      </div>
+  </div>
+</div>
+
+<div class="bottom-bar" id="bottomBar">
+  <div class="bb-info">
+    <div class="bb-count" id="cartCount">เลือก 0 รายการ</div>
+    <div class="bb-total"><span>฿</span><span id="cartTotal">0</span></div>
+  </div>
+  <button class="bb-btn" onclick="openSummary()">สั่งเลย ✨</button>
+</div>
+
+<div class="modal-overlay" id="categoryModal">
+    <div class="modal-box">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+        <h3 id="modalCatTitle" style="color:#fff; font-size:18px;">ชื่อหมวดหมู่</h3>
+        <div onclick="closeCategory()" style="cursor:pointer; font-size:30px; color:var(--text-muted); line-height:1;">×</div>
+      </div>
+      <div class="grid-container" id="categoryGrid">
+          </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="summaryModal">
+  <div class="modal-box">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+      <div style="font-weight:bold; font-size:18px;">🛒 สรุปรายการ</div>
+      <div onclick="closeSummary()" style="cursor:pointer; font-size:30px; color:var(--text-muted); line-height:1;">×</div>
+    </div>
+    <div id="modalItemsList" style="max-height:300px; overflow-y:auto;"></div>
+    <div style="border-top:1px dashed rgba(255,255,255,0.1); margin-top:15px; padding-top:15px; display:flex; justify-content:space-between; align-items:center; font-weight:bold;">
+      <span>รวมทั้งสิ้น:</span>
+      <span style="color:var(--primary); font-size:24px;">฿<span id="modalTotalPrice">0</span></span>
+    </div>
+    <button onclick="checkout()" style="width:100%; background:#00d300; border:none; color:white; padding:15px; border-radius:12px; margin-top:20px; font-weight:bold; font-family:inherit; font-size:16px; cursor:pointer;">คัดลอก & ไปที่ LINE</button>
+  </div>
+</div>
+<script>
+  // Particles Effect (ห้ามแก้)
+  const P = document.getElementById('pts');
+  ['✦','★','✨','✧'].forEach(e => {
+    for (let j = 0; j < 3; j++) {
+      const d = document.createElement('div');
+      d.className = 'pt'; d.textContent = e;
+      d.style.cssText = `left:${Math.random()*100}vw;font-size:${8+Math.random()*6}px;color:#e5a3ff;animation-duration:${10+Math.random()*15}s;animation-delay:${-Math.random()*25}s;`;
+      P.appendChild(d);
+    }
+  });
+
+  // --- DATA SOURCE (แก้ไขตรงนี้เพื่อใส่รูปภาพแยกแต่ละชิ้น) ---
+  const categories = [
+    { 
+        id: 'cat1', 
+        name: 'ฟอนต์เครือ GRP', 
+        // สุ่มราคาสำหรับตัวอย่าง
+        price: 89,
+        // แก้ไขตรงนี้: ใส่ URL รูปภาพแยกของสินค้าในหมวดนี้ (ตัวอย่าง 10 รูป)
+        images: [
+            'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png', // รูปชิ้นที่ 1
+            'https://img5.pic.in.th/file/secure-sv1/GRP-2.png', // สมมติรูปชิ้นที่ 2
+            'https://img5.pic.in.th/file/secure-sv1/GRP-3.png', // สมมติรูปชิ้นที่ 3
+            // เพิ่ม URL รูปจริงไปเรื่อยๆ จนครบตามที่ต้องการแสดงในหน้าปกติ
+        ]
+    },
+    { 
+        id: 'cat2', 
+        name: 'ฟอนต์เครือ DEKDEC', 
+        price: 99,
+        // แก้ไขตรงนี้: ใส่ URL รูปภาพแยกของสินค้าในหมวดนี้
+        images: [
+            'https://img5.pic.in.th/file/secure-sv1/DEK-1.png', 
+            'https://img5.pic.in.th/file/secure-sv1/DEK-2.png',
+        ]
+    }
+    // เพิ่มหมวดหมู่ใหม่ได้ที่นี่
+  ];
+
+  let cart = [];
+
+  // --- ฟังก์ชันสร้างข้อมูลสินค้าแบบระบุรูปแยก ---
+  // ถ้ารูปใน array images หมด จะวนกลับมาใช้รูปแรกใหม่
+  function getProductData(catId, catName, price, imagesArray, index) {
+      const imgUrl = imagesArray[index % imagesArray.length] || 'https://via.placeholder.com/150?text=No+Image';
+      return {
+          id: `${catId}-${index + 1}`,
+          cat: catName,
+          name: `${catName} #${index + 1}`,
+          desc: 'ลิขสิทธิ์แท้ ใช้งานได้พานิชย์',
+          price: price,
+          icon: imgUrl // URL รูปภาพแยกแต่ละชิ้น
+      };
+  }
+
+  // --- ฟังก์ชันจำลองการสร้างสินค้า 500 รายการสำหรับหน้าดูเพิ่มเติม ---
+  function generateFullProducts(catObj) {
+    let items = [];
+    for(let i=0; i<500; i++) {
+        items.push(getProductData(catObj.id, catObj.name, catObj.price, catObj.images, i));
+    }
+    return items;
+  }
+
+  // Render Tabs และสร้าง UI
+  function renderAll() {
+    // 1. Render แนะนำ (หน้าแรก) - โชว์สินค้าตัวแรกของทุกหมวด
+    const recGrid = document.getElementById('recommendGrid');
+    if(recGrid) {
+        let recHtml = '';
+        categories.forEach(c => {
+            // ดึงสินค้าตัวแรกสุด (index 0) ของแต่ละหมวดมาโชว์
+            const p = getProductData(c.id, c.name, c.price, c.images, 0);
+            recHtml += createCardHtml(p);
+        });
+        recGrid.innerHTML = recHtml;
+    }
+
+    // 2. Render หน้าสินค้าทั้งหมด (หมวดหมู่ละ 2 ตัว + ปุ่มดูเพิ่มเติม)
+    const sections = document.getElementById('productSections');
+    if(sections) {
+        let secHtml = '';
+        categories.forEach(c => {
+            secHtml += `
+                <div class="cat-divider">
+                    <span>${c.name}</span>
+                    <button class="btn-more" onclick="showFullCategory('${c.id}')">ดูเพิ่มเติม (500+)</button>
+                </div>
+                <div class="grid-container">
+                    ${createCardHtml(getProductData(c.id, c.name, c.price, c.images, 0))}
+                    ${createCardHtml(getProductData(c.id, c.name, c.price, c.images, 1))}
+                </div>
+            `;
+        });
+        sections.innerHTML = secHtml;
+    }
+  }
+
+  // ฟังก์ชันสร้าง HTML การ์ดสินค้า (แก้ไขเพื่อให้รองรับการ Update รูปแบบ real-time)
+  function createCardHtml(p) {
+    // เช็คว่าสินค้านี้อยู่ในตะกร้าหรือไม่ เพื่อใส่ Class selected
+    const isSel = cart.find(item => item.id === p.id) ? 'selected' : '';
+    return `
+        <div class="item-card ${isSel}" data-id="${p.id}" id="card-${p.id}" onclick="toggleItem('${p.id}', '${p.cat}', '${p.name}', ${p.price}, '${p.icon}', '${p.desc}')">
+          <div class="check-circle"></div>
+          <img src="${p.icon}" class="card-icon" alt="${p.name}" loading="lazy">
+          <div class="card-title">${p.name}</div>
+          <div class="card-desc">${p.desc}</div>
+          <div class="card-price">฿${p.price}</div>
+        </div>
+    `;
+  }
+
+  // --- ระบบเปิดหมวดหมู่ 500 รายการ (ห้ามแก้โครงสร้าง) ---
+  function showFullCategory(catId) {
+    const catObj = categories.find(c => c.id === catId);
+    if(!catObj) return;
+
+    const modal = document.getElementById('categoryModal');
+    const grid = document.getElementById('categoryGrid');
+    document.getElementById('modalCatTitle').innerText = catObj.name;
+    
+    // สร้างสินค้า 500 รายการพร้อมรูปแยก
+    const allItems = generateFullProducts(catObj);
+    grid.innerHTML = allItems.map(p => createCardHtml(p)).join('');
+    modal.classList.add('show');
+  }
+
+  function closeCategory() { document.getElementById('categoryModal').classList.remove('show'); }
+
+  // --- Logic ตะกร้าสินค้าและการเลือก (ห้ามแก้) ---
+  function toggleItem(id, cat, name, price, icon, desc) {
+    const idx = cart.findIndex(i => i.id === id);
+    if(idx > -1) {
+      cart.splice(idx, 1);
+      // เอาไฮไลท์ออกจากการ์ดทุกใบที่มี ID นี้ (ทั้งหน้าปกติและหน้าโมดอล)
+      document.querySelectorAll(`[data-id="${id}"]`).forEach(el => el.classList.remove('selected'));
+    } else {
+      cart.push({id, cat, name, price, desc});
+      // ใส่ไฮไลท์ให้การ์ดทุกใบที่มี ID นี้
+      document.querySelectorAll(`[data-id="${id}"]`).forEach(el => el.classList.add('selected'));
+    }
+    updateBottomBar();
+  }
+
+  function updateBottomBar() {
+    const bar = document.getElementById('bottomBar');
+    if (cart.length > 0) {
+      bar.classList.add('active');
+      document.getElementById('cartCount').innerText = `เลือก ${cart.length} รายการ`;
+      document.getElementById('cartTotal').innerText = cart.reduce((s, i) => s + i.price, 0);
+    } else {
+      bar.classList.remove('active');
+    }
+  }
+
+  function switchTab(tabId) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.getElementById(`btn-${tabId}`).classList.add('active');
+    document.getElementById(`tab-${tabId}`).classList.add('active');
+  }
+
+  // --- สรุปรายการและการสั่งซื้อ (ห้ามแก้) ---
+  function openSummary() {
+    if(cart.length === 0) return;
+    const list = document.getElementById('modalItemsList');
+    let total = 0;
+    list.innerHTML = cart.map(i => {
+        total += i.price;
+        return `<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; font-size:14px; color:#fff; gap:10px;">
+            <span style="flex:1; line-height:1.4;">• ${i.name} <br><span style="font-size:11px; color:var(--text-muted)">${i.desc}</span></span>
+            <span style="color:#e5a3ff; font-weight:600;">฿${i.price}</span>
+        </div>`;
+    }).join('');
+    document.getElementById('modalTotalPrice').innerText = total;
+    document.getElementById('summaryModal').classList.add('show');
+  }
+
+  function closeSummary() { document.getElementById('summaryModal').classList.remove('show'); }
+
+  function checkout() {
+    let text = "สรุปรายการสั่งซื้อ\n--------------------\n";
+    let total = 0;
+    cart.forEach(i => {
+        text += `สินค้า: ${i.cat} - ${i.name}\nราคา: ${i.price} บาท\n\n`;
+        total += i.price;
+    });
+    text += `--------------------\nยอดรวมทั้งหมด: ${total} บาท`;
+    
+    // Copy Text
+    const t = document.createElement("textarea"); t.value = text; document.body.appendChild(t);
+    t.select(); try { document.execCommand("copy"); } catch(err) {} document.body.removeChild(t);
+    
+    closeSummary();
+    // ไปที่ LINE
+    window.location.href = "https://lin.ee/vHRDLCC";
+  }
+
+  //เริ่มต้นการทำงาน
+  renderAll();
+</script>
+</body>
+</html>
