@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>องุ่นหวาน Studio⭐️</title>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Mitr:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Mitr:wght@400;600;700&family=Mitr:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 :root {
@@ -13,12 +13,12 @@
   --bg-main: #EDE2FB; 
   --bg-card: #EADBFB; 
   --border-color: rgba(176,38,255,0.25);
-  --text-muted: #9872A3; /* สีตามสั่ง */
+  --text-muted: #9872A3;
 }
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Kanit', sans-serif;
-  background: var(--bg-main); color: #9872A3; /* สีตัวอักษรตามสั่ง */
+  background: var(--bg-main); color: #9872A3;
   overflow-x: hidden;
   padding-bottom: 110px; 
 }
@@ -30,7 +30,7 @@ body {
 .back-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); }
 .back-btn { background: none; border: none; font-size: 28px; color: #9872A3; cursor: pointer; line-height: 1; }
 
-/* Background Glow & Particles (คงเดิม) */
+/* Background Glow & Particles */
 .bg-glow-1 { position: fixed; top: -100px; left: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(176,38,255,0.15) 0%, rgba(0,0,0,0) 70%); z-index: -1; pointer-events: none; }
 .bg-glow-2 { position: fixed; bottom: 20%; right: -150px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,210,255,0.1) 0%, rgba(0,0,0,0) 70%); z-index: -1; pointer-events: none; }
 #pts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
@@ -51,7 +51,7 @@ body {
 .tab-btn { flex: 1; padding: 8px 0; border-radius: 25px; border: none; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; background: transparent; color: #9872A3; }
 .tab-btn.active { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; box-shadow: 0 2px 10px rgba(176,38,255,0.3); }
 
-/* CONTENT & CARDS (คงเดิม) */
+/* CONTENT & CARDS */
 .content { max-width: 600px; margin: 0 auto; padding: 0 20px 50px; position: relative; z-index: 5; }
 .tab-content { display: none; animation: fadeIn 0.3s ease; }
 .tab-content.active { display: block; }
@@ -69,15 +69,16 @@ body {
 .item-card.selected { border-color: var(--primary); background: linear-gradient(145deg, rgba(176,38,255,0.1) 0%, var(--bg-card) 100%); }
 .card-icon { width: 100%; aspect-ratio: 1/1; border-radius: 12px; margin-bottom: 10px; object-fit: cover; }
 .card-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; color: #9872A3; }
-.card-price { align-self: flex-start; background: rgba(176,38,255,0.15); color: #e5a3ff; font-weight: 600; font-size: 13px; padding: 4px 10px; border-radius: 8px; }
+/* เปลี่ยนสีราคาบนหน้าการ์ดเป็นสีขาวตามสั่ง */
+.card-price { align-self: flex-start; background: rgba(152, 116, 162, 0.6); color: #fff; font-weight: 600; font-size: 13px; padding: 4px 10px; border-radius: 8px; }
 
-/* BOTTOM BAR & MODAL (โค้ดเดิม 100%) */
-.bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(18, 14, 38, 0.95); backdrop-filter: blur(15px); border-top: 1px solid var(--primary); padding: 15px 24px; display: flex; justify-content: space-between; align-items: center; transform: translateY(100%); transition: 0.3s; z-index: 1000; }
+/* BOTTOM BAR เปลี่ยนสีพื้นหลังเป็น #9774A2 และ z-index 4000 */
+.bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #9774A2; backdrop-filter: blur(15px); border-top: 1px solid var(--primary); padding: 15px 24px; display: flex; justify-content: space-between; align-items: center; transform: translateY(100%); transition: 0.3s; z-index: 4000; box-shadow: 0 -5px 20px rgba(0,0,0,0.15); }
 .bottom-bar.active { transform: translateY(0); }
 .bb-total { font-size: 20px; font-weight: 700; color: #fff; }
 .bb-btn { background: linear-gradient(135deg, var(--primary), #d946ef); color: #fff; border: none; border-radius: 25px; padding: 10px 24px; font-size: 16px; font-weight: 600; cursor: pointer; }
 
-.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000; display: none; justify-content: center; align-items: center; }
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 5000; display: none; justify-content: center; align-items: center; }
 .modal-box { background: var(--bg-card); border: 2px solid var(--primary); border-radius: 20px; width: 90%; max-width: 400px; padding: 24px; color: #9872A3; }
 .modal-divider { border-top: 1px dashed rgba(176,38,255,0.4); margin: 15px 0; }
 </style>
@@ -116,7 +117,7 @@ body {
 
 <div class="bottom-bar" id="bottomBar">
   <div class="bb-info">
-    <div class="bb-count" id="cartCount">เลือก 0 รายการ</div>
+    <div class="bb-count" id="cartCount" style="color:#fff; opacity:0.9;">เลือก 0 รายการ</div>
     <div class="bb-total"><span>฿</span><span id="cartTotal">0</span></div>
   </div>
   <button class="bb-btn" onclick="openSummary()">สั่งเลย ✨</button>
@@ -132,44 +133,62 @@ body {
     <div class="modal-divider"></div>
     <div style="display:flex; justify-content:space-between; align-items:center; font-weight:600; color:#fff;">
       <span>ยอดที่ต้องชำระ:</span>
-      <span style="font-size:24px; color:var(--primary);">฿<span id="modalTotalPrice">0</span></span>
+      <span style="font-size:24px; color:#fff;">฿<span id="modalTotalPrice">0</span></span>
     </div>
     <button onclick="checkout()" style="width:100%; background:#00d300; border:none; color:#fff; padding:14px; border-radius:12px; margin-top:20px; font-weight:600; cursor:pointer;">💬 คัดลอก & สั่งผ่าน LINE</button>
   </div>
 </div>
 
 <script>
-  // ข้อมูลสินค้าหลัก (แก้ไขชื่อและราคาได้ที่นี่)
+  // [จุดแก้ไขที่ 1] เปลี่ยนชื่อ ราคา รูปภาพ และรายละเอียดสินค้า และจำนวน (count) ตรงนี้
   const categories = [
-    { id: 'cat1', name: 'ฟอนต์เครือ GRP', price: 89, images: ['https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png'] },
-    { id: 'cat2', name: 'ฟอนต์เครือ DEKDEC', price: 99, images: ['https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png'] }
+    { 
+      id: 'cat1', 
+      name: 'ฟอนต์เครือ GRP', 
+      price: 89, 
+      count: 50, // จำนวนสินค้าของหมวดนี้
+      images: ['https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png'],
+      detail: 'ลิขสิทธิ์แท้ ใช้งานได้พาณิชย์'
+    },
+    { 
+      id: 'cat2', 
+      name: 'ฟอนต์เครือ DEKDEC', 
+      price: 99, 
+      count: 200, // จำนวนสินค้าของหมวดนี้
+      images: ['https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png'],
+      detail: 'รวมเชิงพาณิชย์แล้ว'
+    }
   ];
 
   let cart = [];
 
-  // สร้างหน้าสินค้า
   function renderAll() {
     // หน้าแนะนำ
-    document.getElementById('recommendGrid').innerHTML = categories.map(c => createCardHtml({id:c.id+'-rec', cat:c.name, name:c.name+' (แนะนำ)', price:c.price, icon:c.images[0]})).join('');
+    document.getElementById('recommendGrid').innerHTML = categories.map(c => createCardHtml({id:c.id+'-rec', cat:c.name, name:c.name+' (แนะนำ)', price:c.price, icon:c.images[0], detail:c.detail})).join('');
     // หน้าสินค้าทั้งหมด
     document.getElementById('productSections').innerHTML = categories.map(c => `
-      <div class="sh" style="margin:20px 0;"><div class="sh-left"><h2>${c.name}</h2></div><button class="btn-more" onclick="openFullPage('${c.id}')">ดูเพิ่มเติม (500 รายการ)</button></div>
-      <div class="grid-container">${createCardHtml({id:c.id+'-1', cat:c.name, name:c.name+' #1', price:c.price, icon:c.images[0]})}</div>
+      <div class="sh" style="margin:20px 0;"><div class="sh-left"><h2>${c.name}</h2></div><button class="btn-more" onclick="openFullPage('${c.id}')">ดูเพิ่มเติม</button></div>
+      <div class="grid-container">${createCardHtml({id:c.id+'-1', cat:c.name, name:c.name+' #1', price:c.price, icon:c.images[0], detail:c.detail})}</div>
     `).join('');
   }
 
   function createCardHtml(p) {
     const isSel = cart.find(i => i.id === p.id) ? 'selected' : '';
-    return `<div class="item-card ${isSel}" data-id="${p.id}" onclick="toggleItem('${p.id}','${p.cat}','${p.name}',${p.price},'${p.icon}')"><img src="${p.icon}" class="card-icon"><div class="card-title">${p.name}</div><div class="card-price">฿${p.price}</div></div>`;
+    return `<div class="item-card ${isSel}" data-id="${p.id}" onclick="toggleItem('${p.id}','${p.cat}','${p.name}',${p.price},'${p.icon}')">
+      <img src="${p.icon}" class="card-icon">
+      <div class="card-title">${p.name}</div>
+      <div style="font-size:11px; color:#9872A3; margin-bottom:10px; opacity:0.8;">${p.detail || ''}</div>
+      <div class="card-price">฿${p.price}</div>
+    </div>`;
   }
 
-  // --- ฟังก์ชันหน้าใหม่ (Refresh View) ---
   function openFullPage(catId) {
     const cat = categories.find(c => c.id === catId);
     document.getElementById('fullPageTitle').innerText = cat.name;
     let html = '';
-    for(let i=1; i<=500; i++) {
-        html += createCardHtml({id:`${catId}-${i}`, cat:cat.name, name:`${cat.name} #${i}`, price:cat.price, icon:cat.images[0]});
+    // [จุดแก้ไขที่ 2] ใช้จำนวนสินค้า (cat.count) ตามที่ระบุไว้ด้านบน
+    for(let i=1; i <= cat.count; i++) {
+        html += createCardHtml({id:`${catId}-${i}`, cat:cat.name, name:`${cat.name} #${i}`, price:cat.price, icon:cat.images[0], detail:cat.detail});
     }
     document.getElementById('fullPageGrid').innerHTML = html;
     document.getElementById('mainPage').style.display = 'none';
@@ -182,7 +201,6 @@ body {
     document.getElementById('mainPage').style.display = 'block';
   }
 
-  // --- ระบบตะกร้าและสรุปยอด (คงเดิม 100%) ---
   function toggleItem(id, cat, name, price, icon) {
     const idx = cart.findIndex(i => i.id === id);
     if(idx > -1) { cart.splice(idx, 1); } else { cart.push({id, cat, name, price}); }
@@ -228,7 +246,6 @@ body {
     window.location.href = "https://lin.ee/vHRDLCC";
   }
 
-  // Particle Effect (คงเดิม)
   const Pt = document.getElementById('pts');
   ['✦','★','✨'].forEach(e => { for(let i=0; i<6; i++){ const d = document.createElement('div'); d.className='pt'; d.textContent=e; d.style.cssText=`left:${Math.random()*100}vw;font-size:12px;color:#9872A3;animation-duration:15s;animation-delay:-${Math.random()*20}s;`; Pt.appendChild(d); } });
 
