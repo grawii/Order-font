@@ -15,11 +15,12 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; overflow-x: hidden; padding-bottom: 110px; }
 
-/* --- Particles & Topbar --- */
-#pts { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+/* --- Particles --- */
+#pts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
 .pt { position: absolute; animation: ptUp linear infinite; opacity: 0; }
 @keyframes ptUp { 0% { transform: translateY(105vh); opacity: 0; } 8% { opacity: 0.45; } 100% { transform: translateY(-8vh) rotate(360deg); opacity: 0; } }
 
+/* --- Topbar & Drawer --- */
 .topbar { position: sticky; top: 0; z-index: 100; background: #0f071a; border-bottom: 2px solid var(--pk3); box-shadow: 0 2px 20px rgba(232,64,122,0.3); display: flex; align-items: center; padding: 0 20px; height: 56px; gap: 12px; }
 .ham { width: 38px; height: 38px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; border-radius: 8px; border: 1.5px solid var(--pk); background: rgba(255,128,181,0.12); }
 .ham span { display: block; width: 18px; height: 2px; background: #fff; transition: 0.3s; }
@@ -28,46 +29,40 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
 .ham.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 .topbar-brand { font-family: 'Mitr', sans-serif; font-size: 18px; font-weight: 700; color: #fff; text-shadow: 0 0 12px var(--pk); }
 
-/* --- Drawer --- */
 .overlay { position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.7); display: none; }
-.drawer { position: fixed; top: 0; left: 0; z-index: 201; width: 240px; height: 100vh; background: #0f071a; border-right: 2px solid var(--pk3); transform: translateX(-100%); transition: 0.3s; padding: 40px 0; }
+.drawer { position: fixed; top: 0; left: 0; z-index: 201; width: 250px; height: 100vh; background: #0f071a; border-right: 2px solid var(--pk3); transform: translateX(-100%); transition: 0.3s; padding: 30px 0; }
 .drawer.open { transform: translateX(0); }
-.dr-item { display: block; padding: 15px 25px; color: var(--txt2); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.dr-item { display: block; padding: 15px 25px; color: var(--txt2); text-decoration: none; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.05); }
 .dr-item.active { color: var(--pk); background: rgba(255,128,181,0.1); border-left: 4px solid var(--pk); }
 
-/* --- Pages & Content --- */
+/* --- Content Style --- */
 .view-page { display: none; min-height: 80vh; }
 .view-page.active { display: block; }
-.hero { background: linear-gradient(135deg, #1e0838 0%, #8e2a60 100%); padding: 40px 20px; text-align: center; }
-.content { max-width: 600px; margin: 0 auto; padding: 20px; }
-
-/* --- Elements --- */
-.box { background: linear-gradient(135deg, #12091d, #0a0510); border: 1.5px solid var(--border-color); border-radius: 14px; padding: 20px; margin-bottom: 20px; }
-.sh { display: flex; align-items: center; gap: 10px; background: linear-gradient(90deg, #1e0838 0%, transparent 100%); border-left: 4px solid var(--pk); border-radius: 0 12px 12px 0; padding: 10px 15px; margin: 20px 0 15px; }
-.sh h2 { font-size: 15px; font-weight: 700; }
+.hero { background: linear-gradient(135deg, #1e0838 0%, #8e2a60 100%); padding: 45px 20px; text-align: center; border-bottom: 2px solid var(--pk3); }
+.content { max-width: 650px; margin: 0 auto; padding: 20px; }
+.box { background: linear-gradient(135deg, #12091d, #0a0510); border: 1.5px solid var(--border-color); border-radius: 16px; padding: 20px; margin-bottom: 25px; }
+.sh { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(90deg, #1e0838 0%, transparent 100%); border-left: 4px solid var(--pk); border-radius: 0 12px 12px 0; padding: 10px 15px; margin: 25px 0 15px; }
+.sh h2 { font-size: 15px; font-weight: 700; color: #fff; }
 
 .grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-.item-card { background: var(--bg-card); border: 1.5px solid rgba(255,128,181,0.12); border-radius: 16px; padding: 12px; cursor: pointer; transition: 0.2s; position: relative; }
+.item-card { background: var(--bg-card); border: 1.5px solid rgba(255,128,181,0.12); border-radius: 16px; padding: 12px; cursor: pointer; transition: 0.2s; }
 .item-card.selected { border-color: var(--pk); background: rgba(255,128,181,0.1); box-shadow: 0 0 15px rgba(255,128,181,0.3); }
-.card-icon { width: 100%; aspect-ratio: 1/1; border-radius: 10px; object-fit: cover; margin-bottom: 8px; }
-.card-title { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+.card-icon { width: 100%; aspect-ratio: 1/1; border-radius: 10px; object-fit: cover; margin-bottom: 8px; border: 1px solid rgba(255,255,255,0.05); }
+.card-title { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 4px; line-height: 1.3; }
 .card-desc { font-size: 10px; color: var(--txt2); line-height: 1.2; margin-bottom: 8px; height: 24px; overflow: hidden; }
-.card-price { background: var(--pk3); color: #fff; padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; display: inline-block; }
+.card-price { background: var(--pk3); color: #fff; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; display: inline-block; box-shadow: 0 2px 8px rgba(232,64,122,0.4); }
 
-/* --- Contact Page Style (PinkJulie Ref) --- */
-.ct-link { display: flex; align-items: center; gap: 13px; padding: 12px; background: rgba(255,128,181,0.05); border: 1px solid rgba(255,128,181,0.1); border-radius: 12px; text-decoration: none; color: #fff; margin-bottom: 12px; transition: 0.2s; }
+/* --- Contact Page (Julie Ref) --- */
+.ct-link { display: flex; align-items: center; gap: 13px; padding: 14px; background: rgba(255,128,181,0.05); border: 1px solid rgba(255,128,181,0.1); border-radius: 14px; text-decoration: none; color: #fff; margin-bottom: 12px; transition: 0.2s; }
 .ct-link:hover { background: rgba(255,128,181,0.15); transform: translateX(5px); border-color: var(--pk); }
-.ct-ico { width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.ct-ico { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
 
 /* --- Bottom Bar & Modal --- */
-.bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #0f071a; border-top: 2px solid var(--pk3); padding: 15px 24px; display: flex; justify-content: space-between; align-items: center; transform: translateY(100%); transition: 0.3s; z-index: 4000; }
+.bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #0f071a; border-top: 2px solid var(--pk3); padding: 15px 24px; display: flex; justify-content: space-between; align-items: center; transform: translateY(100%); transition: 0.3s; z-index: 4000; box-shadow: 0 -5px 20px rgba(0,0,0,0.5); }
 .bottom-bar.active { transform: translateY(0); }
 .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 5000; display: none; justify-content: center; align-items: center; }
 .modal-box { background: var(--bg-card); border: 2px solid var(--pk); border-radius: 20px; width: 92%; max-width: 400px; padding: 24px; }
-
-/* Filter Badge */
-.sub-badge { font-size: 10px; background: #1a0d2e; color: var(--pk2); padding: 2px 8px; border-radius: 10px; border: 1px solid var(--pk3); margin-right: 4px; margin-bottom: 4px; display: inline-block; cursor: pointer; }
-.sub-badge.active { background: var(--pk); color: #fff; }
+#fullPageCategory { position: fixed; inset: 0; background: var(--bg); z-index: 3000; display: none; overflow-y: auto; padding: 20px 20px 120px; }
 </style>
 </head>
 <body>
@@ -79,7 +74,11 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
 
 <div class="overlay" id="overlay" onclick="toggleDrawer()"></div>
 <div class="drawer" id="drawer">
-  <div style="text-align:center; padding: 20px 0;"><div style="font-size:40px;">องุ่นหวาน Studio</div></div>
+  <div style="text-align:center; padding: 30px 0 20px 0; border-bottom: 1px solid rgba(255,128,181,0.1); margin-bottom: 10px;">
+    <div style="font-size:24px; margin-bottom:5px;">🍇</div>
+    <div style="font-family:'Mitr'; font-size:18px; font-weight:700; color:var(--pk); text-shadow: 0 0 10px rgba(255,128,181,0.5);">องุ่นหวาน Studio💖</div>
+    <div style="font-size:10px; color:var(--txt2); letter-spacing:2px; margin-top:5px; text-transform:uppercase;">Handmade Fonts</div>
+  </div>
   <a href="javascript:void(0)" class="dr-item active" id="m-home" onclick="navTo('home')">🏠 หน้าแรก</a>
   <a href="javascript:void(0)" class="dr-item" id="m-shop" onclick="navTo('shop')">🎨 สินค้าทั้งหมด</a>
   <a href="javascript:void(0)" class="dr-item" id="m-contact" onclick="navTo('contact')">📱 ติดต่อสอบถาม</a>
@@ -87,72 +86,76 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
 
 <div id="page-home" class="view-page active">
   <div class="hero">
-    <h1 style="font-family:'Mitr'; font-size:28px; text-shadow: 0 0 10px var(--pk);">องุ่นหวาน Studio💖</h1>
-    <p style="font-size:12px; color:var(--pk2);">จำหน่ายฟอนต์ลายมือราคาถูก เริ่มต้นเพียง39.-</p>
+    <h1 style="font-family:'Mitr'; font-size:32px; text-shadow: 0 0 15px var(--pk);">องุ่นหวาน Studio💖</h1>
+    <p style="font-size:13px; color:var(--pk2); margin-top:5px;">จำหน่ายฟอนต์ลายมือพรีเมียม ราคาหลักสิบ ✨</p>
   </div>
   <div class="content">
     <div class="box">
-      <h3 style="color:var(--pk); margin-bottom:8px;">🏠 เกี่ยวกับร้านเรา</h3>
+      <h3 style="color:var(--pk); margin-bottom:10px; font-size:16px;">✨ เกี่ยวกับเรา</h3>
       <p style="font-size:13px; color:var(--txt2); line-height:1.6;">องุ่นหวาน Studio จำหน่ายฟอนต์ลายมือหลากหลายเครือ ทั้ง GRP, AM และ PRN ราคาเริ่มต้นเพียงหลักสิบ มีทั้งแบบดึงเมลเองและรวมเชิงพาณิชย์ (ชพณ.) สวยงาม ใช้งานง่าย พร้อมให้บริการค่ะ ✨</p>
     </div>
-    <div class="sh"><h2>✨ สินค้าแนะนำ</h2></div>
+    <div class="sh"><h2>⭐ สินค้าแนะนำ</h2></div>
     <div class="grid-container" id="home-recommend"></div>
-    <button onclick="navTo('shop')" style="width:100%; margin-top:20px; padding:12px; border-radius:12px; background:transparent; border:1px dashed var(--pk); color:var(--pk); font-weight:700; cursor:pointer;">ดูสินค้าทั้งหมด →</button>
+    <button onclick="navTo('shop')" style="width:100%; margin-top:25px; padding:14px; border-radius:12px; background:transparent; border:1px dashed var(--pk); color:var(--pk); font-weight:700; cursor:pointer; font-family:inherit;">ดูสินค้าทั้งหมด →</button>
   </div>
 </div>
 
 <div id="page-shop" class="view-page">
-  <div class="sh"><h2>🎨 สินค้าทั้งหมด</h2></div>
-  <div class="content" style="padding-top:0;">
-    <div id="shop-content"></div>
-  </div>
+  <div class="sh" style="margin-top:0; border-radius:0;"><h2>🎨 สินค้าทั้งหมดแยกตามเครือ</h2></div>
+  <div class="content" id="shop-content" style="padding-top:10px;"></div>
 </div>
 
 <div id="page-contact" class="view-page">
-  <div class="sh"><h2>📱 ช่องทางการติดต่อ</h2></div>
+  <div class="sh" style="margin-top:0; border-radius:0;"><h2>📱 ช่องทางการติดต่อ</h2></div>
   <div class="content">
     <div class="box">
       <a href="https://www.facebook.com/profile.php?id=100085117960309" class="ct-link" target="_blank">
         <div class="ct-ico" style="background:linear-gradient(135deg,#1877f2,#0855b3);">📘</div>
-        <div><div style="font-weight:700; font-size:14px;">Facebook</div><div style="font-size:11px; color:var(--txt2);">องุ่นหวาน</div></div>
+        <div><div style="font-weight:700; font-size:15px;">Facebook</div><div style="font-size:11px; color:var(--txt2);">องุ่นหวาน</div></div>
       </a>
       <a href="https://www.instagram.com/graphi.rae" class="ct-link" target="_blank">
         <div class="ct-ico" style="background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);">📸</div>
-        <div><div style="font-weight:700; font-size:14px;">Instagram</div><div style="font-size:11px; color:var(--txt2);">graphi.rae</div></div>
+        <div><div style="font-weight:700; font-size:15px;">Instagram</div><div style="font-size:11px; color:var(--txt2);">graphi.rae</div></div>
       </a>
       <a href="https://line.me/ti/p/@309ranuu" class="ct-link" target="_blank">
         <div class="ct-ico" style="background:linear-gradient(135deg,#00b900,#009000);">💚</div>
-        <div><div style="font-weight:700; font-size:14px;">Line</div><div style="font-size:11px; color:var(--txt2);">@309ranuu</div></div>
+        <div><div style="font-weight:700; font-size:15px;">Line</div><div style="font-size:11px; color:var(--txt2);">@309ranuu</div></div>
       </a>
     </div>
   </div>
 </div>
 
+<div id="fullPageCategory">
+    <button style="background:none; border:none; color:var(--pk); font-size:32px; cursor:pointer;" onclick="closeFullPage()">←</button>
+    <div class="sh"><h2 id="fullPageTitle"></h2></div>
+    <div class="grid-container" id="fullPageGrid"></div>
+</div>
+
 <div class="bottom-bar" id="bottomBar">
-  <div><div id="cartCount" style="color:var(--pk2); font-size:11px;">เลือก 0 รายการ</div><div style="font-size:18px; font-weight:700; color:var(--pk);">฿<span id="cartTotal">0</span></div></div>
+  <div><div id="cartCount" style="color:var(--pk2); font-size:11px;">เลือก 0 รายการ</div><div style="font-size:20px; font-weight:700; color:var(--pk);">฿<span id="cartTotal">0</span></div></div>
   <button class="bb-btn" onclick="openSummary()">สั่งเลย ✨</button>
 </div>
 
 <div class="modal-overlay" id="summaryModal">
   <div class="modal-box">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;"><div style="font-weight:600; color:var(--pk2);">🛒 สรุปรายการ</div><div onclick="closeSummary()" style="cursor:pointer; font-size:24px;">×</div></div>
-    <div id="modalItemsList" style="max-height:250px; overflow-y:auto; color:var(--txt2); font-size:13px;"></div>
-    <div id="promoNotice" style="color:var(--pk); font-size:11px; margin-top:8px; font-weight:bold;"></div>
-    <div style="border-top:1px dashed var(--pk); margin:15px 0; padding-top:10px; display:flex; justify-content:space-between;"><span>ยอดรวม:</span><span style="font-size:18px; font-weight:700; color:var(--pk);">฿<span id="modalTotalPrice">0</span></span></div>
-    <button onclick="checkout()" style="width:100%; background:#00d300; border:none; color:#fff; padding:12px; border-radius:10px; font-weight:700;">💬 สั่งซื้อผ่าน LINE</button>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;"><div style="font-weight:600; color:var(--pk2); font-size:16px;">🛒 รายการที่เลือก</div><div onclick="closeSummary()" style="cursor:pointer; font-size:24px;">×</div></div>
+    <div id="modalItemsList" style="max-height:250px; overflow-y:auto; color:var(--txt2); font-size:14px;"></div>
+    <div id="promoNotice" style="color:var(--pk); font-size:12px; margin-top:10px; font-weight:bold;"></div>
+    <div style="border-top:1px dashed var(--pk); margin:15px 0; padding-top:10px; display:flex; justify-content:space-between; color:#fff;"><span>ยอดชำระรวม:</span><span style="font-size:20px; font-weight:700; color:var(--pk);">฿<span id="modalTotalPrice">0</span></span></div>
+    <button onclick="checkout()" style="width:100%; background:#00d300; border:none; color:#fff; padding:14px; border-radius:12px; font-weight:700; cursor:pointer;">💬 คัดลอก & สั่งผ่าน LINE</button>
   </div>
 </div>
 <script>
-  // ข้อมูลสินค้าเดิม (คงเดิม 100% พร้อมระบุหมวดหมู่ย่อย)
+  // ข้อมูลเดิม 100% + เพิ่มระบบ tags สำหรับหมวดหมู่ย่อย (ระบุทับซ้อนได้)
   const categories = [
     { 
       id: 'cat1', 
       name: 'ฟอนต์เครือ GRP - ดึงเมลเอง🏅', 
       products: [
-        { id: 'g1', name: 'มนตรา (GRP Mantra)', price: 89, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png', tags: ['เนื้อหา'] },
-        { id: 'g2', name: 'ไฮสคูล (GRP High School)', price: 129, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png', tags: ['เนื้อหา', 'โปร่ง'] },
-        { id: 'g3', name: 'คุ๊กกี้ (GRP Cookie)', price: 39, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png', tags: ['อิโมจิ'] },
-        { id: 'g4', name: 'แคสเปอร์ (GRP Casper)', price: 99, detail: 'มีน้ำหนักเดียว มีเฉพาะตัวeng', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png', tags: ['โปร่ง'] }
+        { id: 'g1', name: 'มนตรา (GRP Mantra)', price: 89, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isPromo: false, img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png', tags: ['เนื้อหา'] },
+        { id: 'g2', name: 'ไฮสคูล (GRP High School)', price: 129, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isPromo: false, img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png', tags: ['เนื้อหา', 'โปร่ง'] },
+        { id: 'g3', name: 'คุ๊กกี้ (GRP Cookie)', price: 39, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isPromo: false, img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png', tags: ['อิโมจิ'] },
+        { id: 'g4', name: 'แคสเปอร์ (GRP Casper)', price: 99, detail: 'มีน้ำหนักเดียว มีเฉพาะตัวeng', isPromo: false, img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png', tags: ['โปร่ง'] }
       ]
     },
     { 
@@ -162,7 +165,10 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
         { id: 'a1', name: 'บัลเดอร์ (AM Balder)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img1.pic.in.th/images/06E02B71-90EC-4ABB-B1D5-B16D571E69A1.jpeg', tags: ['เนื้อหา'] },
         { id: 'a2', name: 'ซันเดย์ (AM Sunday)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img2.pic.in.th/D1E3E059-CE9D-4BB4-8D44-C0FEB86C1F30.jpeg', tags: ['เนื้อหา'] },
         { id: 'a3', name: 'เรนเจอร์ (AM Ranger)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img2.pic.in.th/CF5D39C1-27F2-40C7-A907-FFB7BAF60226.jpeg', tags: ['โปร่ง'] },
-        { id: 'a4', name: 'วินเทอร์ (AM Winter)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img1.pic.in.th/images/1A872D06-44D6-42D9-A220-0FC54C97763B.jpeg', tags: ['โปร่ง'] }
+        { id: 'a4', name: 'วินเทอร์ (AM Winter)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img1.pic.in.th/images/1A872D06-44D6-42D9-A220-0FC54C97763B.jpeg', tags: ['โปร่ง'] },
+        { id: 'a5', name: 'เอสเม่ (AM Esme)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img2.pic.in.th/62E2B8DA-7760-4550-A250-8110984CE2FD.jpeg', tags: ['เนื้อหา'] },
+        { id: 'a6', name: 'เทียนหอม (AM Tianhom)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img1.pic.in.th/images/2A111247-4E6E-44D7-85D7-529D69471666.jpeg', tags: ['เนื้อหา'] },
+        { id: 'a7', name: 'โอลิเวีย (AM Olivia)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img2.pic.in.th/4B64ED71-2998-458E-9EDE-9C2962DDE825.jpeg', tags: ['เนื้อหา'] }
       ]
     },
     { 
@@ -170,7 +176,17 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
       name: 'ฟอนต์เครือ PRN', 
       products: [
         { id: 'p1', name: 'มันช์กิ้น (PRN Munchkin)', price: 49, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/3E6BC611-316E-4038-8DB7-3AA058B4B2B5.jpeg', tags: ['เนื้อหา'] },
-        { id: 'p11', name: 'Chubby Cat (PRN Chubby Cat)', price: 59, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/3E1D1962-DDE5-40E8-A8EC-40540B672F3A.jpeg', tags: ['อิโมจิ'] }
+        { id: 'p2', name: 'ซอฟท์คุกกี้ (PRN SoftCookie)', price: 69, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/7363B561-6330-4505-91B4-630C60590D78.jpeg', tags: ['เนื้อหา'] },
+        { id: 'p3', name: 'ซัมเมอร์ (PRN Summer)', price: 59, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/86EEE341-AF29-4143-9FFD-29880598C2FB.jpeg', tags: ['เนื้อหา'] },
+        { id: 'p4', name: 'บันนี่ (PRN Bunny)', price: 49, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/08374BAE-A61C-4771-8724-23240E1EDDAE.jpeg', tags: ['เนื้อหา'] },
+        { id: 'p5', name: 'เชอร์รี่ (PRN Cherry)', price: 49, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/702A4A6A-59D1-4F06-982A-5685F0679540.jpeg', tags: ['เนื้อหา'] },
+        { id: 'p6', name: 'สโนว์บอล (PRN SnowBall)', price: 39, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/3E886520-FE8D-4DA2-A27D-652D72172FA0.jpeg', tags: ['อิโมจิ'] },
+        { id: 'p7', name: 'เดซี่ (PRN Daisy)', price: 45, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/1603A0C8-F19F-494B-BEF4-A3A7064A1F12.jpeg', tags: ['เนื้อหา'] },
+        { id: 'p8', name: 'Puppy (PRN Puppy)', price: 65, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/AE0944CF-38F9-44F3-9A12-C8E36BE8F12F.jpeg', tags: ['เนื้อหา'] },
+        { id: 'p9', name: 'หมีจิ๋ว (PRN Tiny Teddies)', price: 79, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/35A6312A-9300-4330-932A-778C8168D14D.jpeg', tags: ['อิโมจิ'] },
+        { id: 'p10', name: 'สนามเด็กเล่น (PRN Playground)', price: 59, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/51F7BE76-1CD1-4741-98F4-0C8030A7DCC9.jpeg', tags: ['เนื้อหา'] },
+        { id: 'p11', name: 'Chubby Cat (PRN Chubby Cat)', price: 59, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/3E1D1962-DDE5-40E8-A8EC-40540B672F3A.jpeg', tags: ['อิโมจิ'] },
+        { id: 'p12', name: 'โคลเวอร์ (PRN Clover)', price: 75, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/FA57404D-FA08-43A8-8B82-7B73E3C6AA83.jpeg', tags: ['เนื้อหา'] }
       ]
     }
   ];
@@ -178,38 +194,31 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
   let cart = [];
   const subCats = ['โปร่ง', 'เนื้อหา', 'อิโมจิ'];
 
-  // ฟังก์ชันสลับหน้า Page
   function navTo(pageId) {
     document.querySelectorAll('.view-page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.dr-item').forEach(m => m.classList.remove('active'));
     document.getElementById('page-' + pageId).classList.add('active');
     if(document.getElementById('m-' + pageId)) document.getElementById('m-' + pageId).classList.add('active');
-    
-    // เคลียร์หน้า Full Page ทุกครั้งที่เปลี่ยนหน้าหลัก
     closeFullPage();
-
-    if (pageId === 'shop') renderShop();
     if (pageId === 'home') renderHome();
+    if (pageId === 'shop') renderShop();
     closeDrawer();
     window.scrollTo(0,0);
   }
 
-  // แสดงผลหน้าแรก (แนะนำ 4 ชิ้นแรก)
   function renderHome() {
     let recItems = [];
-    categories.forEach(c => recItems.push(...c.products.slice(0,2))); // ดึงเครือละ 2 ชิ้นมาโชว์
+    categories.forEach(c => recItems.push(...c.products.slice(0,2)));
     document.getElementById('home-recommend').innerHTML = recItems.map(p => {
        const catName = categories.find(c => c.products.includes(p)).name;
        return createCardHtml(p, catName);
     }).join('');
   }
 
-  // แสดงผลหน้าสินค้าทั้งหมด (แบ่งหมวดหมู่หลัก > ย่อย)
   function renderShop() {
     let html = '';
     categories.forEach(cat => {
       html += `<div class="sh" style="background:none; border-bottom:1px solid var(--pk3); border-radius:0; margin-top:40px;"><h2>${cat.name}</h2></div>`;
-      
       subCats.forEach(sub => {
         const filtered = cat.products.filter(p => p.tags && p.tags.includes(sub));
         if (filtered.length > 0) {
@@ -226,14 +235,11 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
     document.getElementById('shop-content').innerHTML = html;
   }
 
-  // ฟังก์ชัน "ดูเพิ่มเติม" รายหมวดหมู่ย่อย
   function viewSubCategory(catId, subTagName) {
     const cat = categories.find(c => c.id === catId);
     const filtered = cat.products.filter(p => p.tags && p.tags.includes(subTagName));
-    
-    document.getElementById('fullPageTitle').innerText = `${cat.name} (${subTagName})`;
+    document.getElementById('fullPageTitle').innerText = `${cat.name} - ${subTagName}`;
     document.getElementById('fullPageGrid').innerHTML = filtered.map(p => createCardHtml(p, cat.name)).join('');
-    
     document.getElementById('page-shop').style.display = 'none';
     document.getElementById('fullPageCategory').style.display = 'block';
     window.scrollTo(0,0);
@@ -241,21 +247,14 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
 
   function closeFullPage() {
     document.getElementById('fullPageCategory').style.display = 'none';
-    if(document.getElementById('page-shop').classList.contains('active')) {
-        document.getElementById('page-shop').style.display = 'block';
-    }
+    if(document.getElementById('page-shop').classList.contains('active')) document.getElementById('page-shop').style.display = 'block';
   }
 
-  // --- ฟังก์ชันพื้นฐานอื่นๆ (คงเดิม) ---
   function createCardHtml(p, catName) {
     const isSel = cart.find(i => i.id === p.id) ? 'selected' : '';
-    return `
-      <div class="item-card ${isSel}" data-id="${p.id}" onclick="toggleItem('${p.id}','${catName}','${p.name}',${p.price},${p.isPromo || false})">
-        <img src="${p.img}" class="card-icon">
-        <div class="card-title">${p.name}</div>
-        <div class="card-desc">${p.detail}</div>
-        <div class="card-price">฿${p.price}</div>
-      </div>`;
+    return `<div class="item-card ${isSel}" data-id="${p.id}" onclick="toggleItem('${p.id}','${catName}','${p.name}',${p.price},${p.isPromo || false})">
+      <img src="${p.img}" class="card-icon"><div class="card-title">${p.name}</div><div class="card-desc">${p.detail}</div><div class="card-price">฿${p.price}</div>
+    </div>`;
   }
 
   function toggleItem(id, cat, name, price, isPromo) {
@@ -290,38 +289,41 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
     document.getElementById('modalTotalPrice').innerText = res.total;
     document.getElementById('summaryModal').style.display = 'flex';
   }
+
   function closeSummary() { document.getElementById('summaryModal').style.display = 'none'; }
 
   function checkout() {
     const res = calculateTotal();
     let text = "สรุปรายการสั่งซื้อ💖\n\n" + cart.map(i => `• ${i.cat}: ${i.name} (${i.price}.-)`).join('\n');
-    if(res.discount > 0) text += `\n\nส่วนลด AM: -${res.discount} บาท`;
-    text += `\nยอดสุทธิ: ${res.total} บาท\n--------------------\nขอบคุณที่มาอุดหนุนร้านองุ่นนะคะ⭐️\nรอองุ่นตอบกลับภายใน 5-10 นาทีน้า🫶🏻☁️`;
+    if(res.discount > 0) text += `\n\nส่วนลดโปรโมชั่น AM: -${res.discount} บาท`;
+    text += `\nยอดสุทธิ: ${res.total} บาท\n--------------------\nขอบคุณที่มาอุดหนุนร้านองุ่นนะคะ⭐️`;
     const temp = document.createElement("textarea"); temp.value = text; document.body.appendChild(temp);
     temp.select(); document.execCommand("copy"); document.body.removeChild(temp);
     window.location.href = "https://line.me/ti/p/@309ranuu";
   }
 
   function toggleDrawer() {
-    document.getElementById('drawer').classList.toggle('open');
-    document.getElementById('overlay').style.display = document.getElementById('drawer').classList.contains('open') ? 'block' : 'none';
+    const isOpen = document.getElementById('drawer').classList.toggle('open');
+    document.getElementById('overlay').style.display = isOpen ? 'block' : 'none';
     document.getElementById('hamBtn').classList.toggle('open');
   }
-  function closeDrawer() { 
+
+  function closeDrawer() {
     document.getElementById('drawer').classList.remove('open');
     document.getElementById('overlay').style.display = 'none';
     document.getElementById('hamBtn').classList.remove('open');
   }
 
-  // Particles
   const P = document.getElementById('pts');
   ['✦','★','♥'].forEach(e => {
-    for (let j = 0; j < 3; j++) {
+    for (let j = 0; j < 4; j++) {
       const d = document.createElement('div'); d.className = 'pt'; d.textContent = e;
-      d.style.cssText = `left:${Math.random()*100}vw;font-size:${10+Math.random()*10}px;color:var(--pk);animation-duration:${10+Math.random()*15}s;animation-delay:${-Math.random()*20}s;`;
+      d.style.cssText = `left:${Math.random()*100}vw;font-size:${10+Math.random()*10}px;color:var(--pk);animation-duration:${10+Math.random()*15}s;animation-delay:${-Math.random()*25}s;`;
       P.appendChild(d);
     }
   });
 
   renderHome();
 </script>
+</body>
+</html>
