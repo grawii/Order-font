@@ -52,7 +52,7 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
 .card-desc { font-size: 10px; color: var(--txt2); line-height: 1.2; margin-bottom: 8px; height: 24px; overflow: hidden; }
 .card-price { background: var(--pk3); color: #fff; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; display: inline-block; box-shadow: 0 2px 8px rgba(232,64,122,0.4); }
 
-/* --- Contact Page (Julie Ref) --- */
+/* --- Contact Page --- */
 .ct-link { display: flex; align-items: center; gap: 13px; padding: 14px; background: rgba(255,128,181,0.05); border: 1px solid rgba(255,128,181,0.1); border-radius: 14px; text-decoration: none; color: #fff; margin-bottom: 12px; transition: 0.2s; }
 .ct-link:hover { background: rgba(255,128,181,0.15); transform: translateX(5px); border-color: var(--pk); }
 .ct-ico { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
@@ -60,6 +60,7 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
 /* --- Bottom Bar & Modal --- */
 .bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #0f071a; border-top: 2px solid var(--pk3); padding: 15px 24px; display: flex; justify-content: space-between; align-items: center; transform: translateY(100%); transition: 0.3s; z-index: 4000; box-shadow: 0 -5px 20px rgba(0,0,0,0.5); }
 .bottom-bar.active { transform: translateY(0); }
+.bb-btn { background: var(--pk); color: #fff; border: none; padding: 10px 25px; border-radius: 10px; font-weight: 700; cursor: pointer; }
 .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 5000; display: none; justify-content: center; align-items: center; }
 .modal-box { background: var(--bg-card); border: 2px solid var(--pk); border-radius: 20px; width: 92%; max-width: 400px; padding: 24px; }
 #fullPageCategory { position: fixed; inset: 0; background: var(--bg); z-index: 3000; display: none; overflow-y: auto; padding: 20px 20px 120px; }
@@ -77,7 +78,7 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
   <div style="text-align:center; padding: 30px 0 20px 0; border-bottom: 1px solid rgba(255,128,181,0.1); margin-bottom: 10px;">
     <div style="font-size:24px; margin-bottom:5px;">🍇</div>
     <div style="font-family:'Mitr'; font-size:18px; font-weight:700; color:var(--pk); text-shadow: 0 0 10px rgba(255,128,181,0.5);">องุ่นหวาน Studio💖</div>
-    <div style="font-size:10px; color:var(--txt2); letter-spacing:2px; margin-top:5px; text-transform:uppercase;">Handmade Fonts</div>
+    <div style="font-size:10px; color:var(--txt2); letter-spacing:2px; margin-top:5px; text-transform:uppercase;">Handwriten Fonts</div>
   </div>
   <a href="javascript:void(0)" class="dr-item active" id="m-home" onclick="navTo('home')">🏠 หน้าแรก</a>
   <a href="javascript:void(0)" class="dr-item" id="m-shop" onclick="navTo('shop')">🎨 สินค้าทั้งหมด</a>
@@ -146,16 +147,15 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
   </div>
 </div>
 <script>
-  // ข้อมูลเดิม 100% + เพิ่มระบบ tags สำหรับหมวดหมู่ย่อย (ระบุทับซ้อนได้)
   const categories = [
     { 
       id: 'cat1', 
-      name: 'ฟอนต์เครือ GRP - ดึงเมลเอง🏅', 
+      name: 'ฟอนต์เครือ GRP - ดึงเมลเอง🔥', 
       products: [
         { id: 'g1', name: 'มนตรา (GRP Mantra)', price: 89, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isPromo: false, img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png', tags: ['เนื้อหา'] },
-        { id: 'g2', name: 'ไฮสคูล (GRP High School)', price: 129, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isPromo: false, img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png', tags: ['เนื้อหา', 'โปร่ง'] },
-        { id: 'g3', name: 'คุ๊กกี้ (GRP Cookie)', price: 39, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isPromo: false, img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png', tags: ['อิโมจิ'] },
-        { id: 'g4', name: 'แคสเปอร์ (GRP Casper)', price: 99, detail: 'มีน้ำหนักเดียว มีเฉพาะตัวeng', isPromo: false, img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png', tags: ['โปร่ง'] }
+        { id: 'g2', name: 'ไฮสคูล (GRP High School)', price: 129, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isPromo: false, img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png', tags: ['เนื้อหา'] },
+        { id: 'g3', name: 'คุ๊กกี้ (GRP Cookie)', price: 39, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isPromo: false, img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png', tags: ['เนื้อหา'] },
+        { id: 'g4', name: 'แคสเปอร์ (GRP Casper)', price: 99, detail: 'มีน้ำหนักเดียว มีเฉพาะตัวeng', isPromo: false, img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png', tags: ['เนื้อหา'] }
       ]
     },
     { 
@@ -164,8 +164,8 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
       products: [
         { id: 'a1', name: 'บัลเดอร์ (AM Balder)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img1.pic.in.th/images/06E02B71-90EC-4ABB-B1D5-B16D571E69A1.jpeg', tags: ['เนื้อหา'] },
         { id: 'a2', name: 'ซันเดย์ (AM Sunday)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img2.pic.in.th/D1E3E059-CE9D-4BB4-8D44-C0FEB86C1F30.jpeg', tags: ['เนื้อหา'] },
-        { id: 'a3', name: 'เรนเจอร์ (AM Ranger)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img2.pic.in.th/CF5D39C1-27F2-40C7-A907-FFB7BAF60226.jpeg', tags: ['โปร่ง'] },
-        { id: 'a4', name: 'วินเทอร์ (AM Winter)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img1.pic.in.th/images/1A872D06-44D6-42D9-A220-0FC54C97763B.jpeg', tags: ['โปร่ง'] },
+        { id: 'a3', name: 'เรนเจอร์ (AM Ranger)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img2.pic.in.th/CF5D39C1-27F2-40C7-A907-FFB7BAF60226.jpeg', tags: ['เนื้อหา'] },
+        { id: 'a4', name: 'วินเทอร์ (AM Winter)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img1.pic.in.th/images/1A872D06-44D6-42D9-A220-0FC54C97763B.jpeg', tags: ['เนื้อหา'] },
         { id: 'a5', name: 'เอสเม่ (AM Esme)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img2.pic.in.th/62E2B8DA-7760-4550-A250-8110984CE2FD.jpeg', tags: ['เนื้อหา'] },
         { id: 'a6', name: 'เทียนหอม (AM Tianhom)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img1.pic.in.th/images/2A111247-4E6E-44D7-85D7-529D69471666.jpeg', tags: ['เนื้อหา'] },
         { id: 'a7', name: 'โอลิเวีย (AM Olivia)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img2.pic.in.th/4B64ED71-2998-458E-9EDE-9C2962DDE825.jpeg', tags: ['เนื้อหา'] }
@@ -180,13 +180,39 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
         { id: 'p3', name: 'ซัมเมอร์ (PRN Summer)', price: 59, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/86EEE341-AF29-4143-9FFD-29880598C2FB.jpeg', tags: ['เนื้อหา'] },
         { id: 'p4', name: 'บันนี่ (PRN Bunny)', price: 49, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/08374BAE-A61C-4771-8724-23240E1EDDAE.jpeg', tags: ['เนื้อหา'] },
         { id: 'p5', name: 'เชอร์รี่ (PRN Cherry)', price: 49, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/702A4A6A-59D1-4F06-982A-5685F0679540.jpeg', tags: ['เนื้อหา'] },
-        { id: 'p6', name: 'สโนว์บอล (PRN SnowBall)', price: 39, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/3E886520-FE8D-4DA2-A27D-652D72172FA0.jpeg', tags: ['อิโมจิ'] },
+        { id: 'p6', name: 'สโนว์บอล (PRN SnowBall)', price: 39, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/3E886520-FE8D-4DA2-A27D-652D72172FA0.jpeg', tags: ['เนื้อหา'] },
         { id: 'p7', name: 'เดซี่ (PRN Daisy)', price: 45, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/1603A0C8-F19F-494B-BEF4-A3A7064A1F12.jpeg', tags: ['เนื้อหา'] },
         { id: 'p8', name: 'Puppy (PRN Puppy)', price: 65, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/AE0944CF-38F9-44F3-9A12-C8E36BE8F12F.jpeg', tags: ['เนื้อหา'] },
-        { id: 'p9', name: 'หมีจิ๋ว (PRN Tiny Teddies)', price: 79, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/35A6312A-9300-4330-932A-778C8168D14D.jpeg', tags: ['อิโมจิ'] },
+        { id: 'p9', name: 'หมีจิ๋ว (PRN Tiny Teddies)', price: 79, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/35A6312A-9300-4330-932A-778C8168D14D.jpeg', tags: ['เนื้อหา'] },
         { id: 'p10', name: 'สนามเด็กเล่น (PRN Playground)', price: 59, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/51F7BE76-1CD1-4741-98F4-0C8030A7DCC9.jpeg', tags: ['เนื้อหา'] },
-        { id: 'p11', name: 'Chubby Cat (PRN Chubby Cat)', price: 59, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/3E1D1962-DDE5-40E8-A8EC-40540B672F3A.jpeg', tags: ['อิโมจิ'] },
+        { id: 'p11', name: 'Chubby Cat (PRN Chubby Cat)', price: 59, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/3E1D1962-DDE5-40E8-A8EC-40540B672F3A.jpeg', tags: ['เนื้อหา'] },
         { id: 'p12', name: 'โคลเวอร์ (PRN Clover)', price: 75, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/FA57404D-FA08-43A8-8B82-7B73E3C6AA83.jpeg', tags: ['เนื้อหา'] }
+      ]
+    },
+    { 
+      id: 'cat4', 
+      name: 'ฟอนต์เครือ CNJ - ดึงเมลเอง🔥', 
+      products: [
+        { id: 'c1', name: 'เมลโล่ฟลาวเวอร์ (CNJ MelloFlower)', price: 69, detail: 'โปร 2 ฟอนต์ 99.-', isPromo: true, img: 'https://img2.pic.in.th/3E6BC611-316E-4038-8DB7-3AA058B4B2B5.jpeg', tags: ['เนื้อหา'] },
+        { id: 'c2', name: 'เมลโล่ทิวลิป (CNJ MelloTulip)', price: 69, detail: 'โปร 2 ฟอนต์ 99.-', isPromo: true, img: 'https://img2.pic.in.th/7363B561-6330-4505-91B4-630C60590D78.jpeg', tags: ['เนื้อหา'] },
+        { id: 'c3', name: 'เมลโล่วิสทีเรีย (CNJ MelloWisteria)', price: 69, detail: 'โปร 2 ฟอนต์ 99.-', isPromo: true, img: 'https://img2.pic.in.th/86EEE341-AF29-4143-9FFD-29880598C2FB.jpeg', tags: ['เนื้อหา'] },
+        { id: 'c4', name: 'เมลโล่คอสมอส (CNJ MelloCosmos)', price: 69, detail: 'โปร 2 ฟอนต์ 99.-', isPromo: true, img: 'https://img1.pic.in.th/images/08374BAE-A61C-4771-8724-23240E1EDDAE.jpeg', tags: ['เนื้อหา'] },
+        { id: 'c5', name: 'เมลโล่สโนว์วี่ (CNJ MelloSnowy)', price: 69, detail: 'โปร 2 ฟอนต์ 99.-', isPromo: true, img: 'https://img2.pic.in.th/702A4A6A-59D1-4F06-982A-5685F0679540.jpeg', tags: ['เนื้อหา'] },
+        { id: 'c6', name: 'เมลโล่ลิลลี่เบล (CNJ MelloLilybell)', price: 69, detail: 'โปร 2 ฟอนต์ 99.-', isPromo: true, img: 'https://img1.pic.in.th/images/3E886520-FE8D-4DA2-A27D-652D72172FA0.jpeg', tags: ['เนื้อหา'] },
+        { id: 'c7', name: 'เมลโล่เพทูเนีย (CNJ MelloPetunia)', price: 69, detail: 'โปร 2 ฟอนต์ 99.-', isPromo: true, img: 'https://img1.pic.in.th/images/1603A0C8-F19F-494B-BEF4-A3A7064A1F12.jpeg', tags: ['เนื้อหา'] },
+        { id: 'c8', name: 'เมลโล่สวีทพี (CNJ MelloSweetpea)', price: 69, detail: 'โปร 2 ฟอนต์ 99.-', isPromo: true, img: 'https://img1.pic.in.th/images/AE0944CF-38F9-44F3-9A12-C8E36BE8F12F.jpeg', tags: ['เนื้อหา'] },
+        { id: 'c9', name: 'เมลโล่ซินเนีย (CNJ MelloZinnia)', price: 69, detail: 'โปร 2 ฟอนต์ 99.-', isPromo: true, img: 'https://img2.pic.in.th/35A6312A-9300-4330-932A-778C8168D14D.jpeg', tags: ['เนื้อหา'] },
+        { id: 'c10', name: 'เมลโล่การ์เด้น (CNJ MelloGarden)', price: 69, detail: 'โปร 2 ฟอนต์ 99.-', isPromo: true, img: 'https://img2.pic.in.th/35A6312A-9300-4330-932A-778C8168D14D.jpeg', tags: ['เนื้อหา'] },
+        { id: 'c11', name: 'ชิบิเจลลี่ (CNJ ChibiJelly)', price: 99, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/51F7BE76-1CD1-4741-98F4-0C8030A7DCC9.jpeg', tags: ['เนื้อหา'] },
+        { id: 'c12', name: 'ชิบิคุกกี้ (CNJ ChibiCookie)', price: 99, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/3E6BC611-316E-4038-8DB7-3AA058B4B2B5.jpeg', tags: ['เนื้อหา'] },
+        { id: 'c13', name: 'ชิบิลาเต้ (CNJ ChibiLatte)', price: 99, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/7363B561-6330-4505-91B4-630C60590D78.jpeg', tags: ['เนื้อหา'] },
+        { id: 'c14', name: 'ชิบิซันนี่ (CNJ ChibiSunny)', price: 99, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/86EEE341-AF29-4143-9FFD-29880598C2FB.jpeg', tags: ['เนื้อหา'] },
+        { id: 'c15', name: 'ชิบิคิ้วท์ตี้ (CNJ ChibiCutie)', price: 99, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/08374BAE-A61C-4771-8724-23240E1EDDAE.jpeg', tags: ['เนื้อหา'] },
+        { id: 'c16', name: 'ชิบิมัจฉะ (CNJ ChibiMatcha)', price: 99, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/702A4A6A-59D1-4F06-982A-5685F0679540.jpeg', tags: ['เนื้อหา'] },
+        { id: 'c17', name: 'ชิบิจัสมิน (CNJ ChibiJasmine)', price: 99, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/3E886520-FE8D-4DA2-A27D-652D72172FA0.jpeg', tags: ['เนื้อหา'] },
+        { id: 'c18', name: 'ชิบิโคลเวอร์ (CNJ ChibiClover)', price: 99, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/1603A0C8-F19F-494B-BEF4-A3A7064A1F12.jpeg', tags: ['เนื้อหา'] },
+        { id: 'c19', name: 'ชิบิคอร์กี้ (CNJ ChibiCorgi)', price: 99, detail: 'รวมชพณ.', img: 'https://img1.pic.in.th/images/AE0944CF-38F9-44F3-9A12-C8E36BE8F12F.jpeg', tags: ['เนื้อหา'] },
+        { id: 'c20', name: 'ชิบิโมจิ (CNJ ChibiMochi)', price: 99, detail: 'รวมชพณ.', img: 'https://img2.pic.in.th/35A6312A-9300-4330-932A-778C8168D14D.jpeg', tags: ['เนื้อหา'] }
       ]
     }
   ];
@@ -276,16 +302,28 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
 
   function calculateTotal() {
     let subtotal = cart.reduce((s, i) => s + i.price, 0);
-    let promoCount = cart.filter(i => i.isPromo).length;
-    let discount = Math.floor(promoCount / 2) * 18;
-    return { subtotal, total: subtotal - discount, discount };
+    
+    // ส่วนลด AM (2 ฟอนต์ 100.-) -> ปกติชุดละ 118 หักออก 18
+    let promoAMCount = cart.filter(i => i.cat.includes('AM') && i.isPromo).length;
+    let discAM = Math.floor(promoAMCount / 2) * 18;
+    
+    // ส่วนลด CNJ (2 ฟอนต์ 99.-) -> ปกติชุดละ 138 หักออก 39
+    let promoCNJCount = cart.filter(i => i.cat.includes('CNJ') && i.isPromo).length;
+    let discCNJ = Math.floor(promoCNJCount / 2) * 39;
+    
+    return { subtotal, total: subtotal - discAM - discCNJ, discAM, discCNJ };
   }
 
   function openSummary() {
     let html = ''; const res = calculateTotal();
     cart.forEach(i => html += `<div style="display:flex; justify-content:space-between; margin-bottom:10px;"><span>• ${i.name}</span><span>฿${i.price}</span></div>`);
     document.getElementById('modalItemsList').innerHTML = html;
-    document.getElementById('promoNotice').innerText = res.discount > 0 ? `✨ ส่วนลด AM: -฿${res.discount}` : '';
+    
+    let promoTxt = "";
+    if(res.discAM > 0) promoTxt += `✨ ส่วนลด AM: -฿${res.discAM}<br>`;
+    if(res.discCNJ > 0) promoTxt += `✨ ส่วนลด CNJ: -฿${res.discCNJ}`;
+    
+    document.getElementById('promoNotice').innerHTML = promoTxt;
     document.getElementById('modalTotalPrice').innerText = res.total;
     document.getElementById('summaryModal').style.display = 'flex';
   }
@@ -295,8 +333,9 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
   function checkout() {
     const res = calculateTotal();
     let text = "สรุปรายการสั่งซื้อ💖\n\n" + cart.map(i => `• ${i.cat}: ${i.name} (${i.price}.-)`).join('\n');
-    if(res.discount > 0) text += `\n\nส่วนลดโปรโมชั่น AM: -${res.discount} บาท`;
-    text += `\nยอดสุทธิ: ${res.total} บาท\n--------------------\nขอบคุณที่มาอุดหนุนร้านองุ่นนะคะ⭐️`;
+    if(res.discAM > 0) text += `\n\nส่วนลดโปรโมชั่น AM: -${res.discAM} บาท`;
+    if(res.discCNJ > 0) text += `\n\nส่วนลดโปรโมชั่น CNJ: -${res.discCNJ} บาท`;
+    text += `\nยอดสุทธิ: ${res.total} บาท\n--------------------\nขอบคุณที่มาอุดหนุนร้านองุ่นนะคะ⭐️\nรอองุ่นตอบกลับ 5-10 นาทีน้า🫶🏻☁️`;
     const temp = document.createElement("textarea"); temp.value = text; document.body.appendChild(temp);
     temp.select(); document.execCommand("copy"); document.body.removeChild(temp);
     window.location.href = "https://line.me/ti/p/@309ranuu";
@@ -315,7 +354,7 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
   }
 
   const P = document.getElementById('pts');
-  ['✦','★','♥'].forEach(e => {
+  ['✦','★','♥','🍇'].forEach(e => {
     for (let j = 0; j < 4; j++) {
       const d = document.createElement('div'); d.className = 'pt'; d.textContent = e;
       d.style.cssText = `left:${Math.random()*100}vw;font-size:${10+Math.random()*10}px;color:var(--pk);animation-duration:${10+Math.random()*15}s;animation-delay:${-Math.random()*25}s;`;
