@@ -311,7 +311,7 @@ body {
     const res = calculateTotal();
     let text = "สรุปรายการสั่งซื้อ💖\n\n" + cart.map(i => `• ${i.cat}: ${i.name} (${i.price}.-)`).join('\n');
     if(res.discount > 0) text += `\n\nส่วนลดโปรโมชั่น AM: -${res.discount} บาท`;
-    text += `\nยอดสุทธิ: ${res.total} บาท\n--------------------\nขอบคุณที่มาอุดหนุนร้านองุ่นนะคะ⭐️`;
+    text += `\nยอดรวม: ${res.total} บาท\n--------------------\nขอบคุณที่มาอุดหนุนร้านองุ่นนะคะ⭐️\nรอองุ่นตอบกลับภายใน 5-10 นาทีน้า🫶🏻✨`;
     const temp = document.createElement("textarea"); temp.value = text; document.body.appendChild(temp);
     temp.select(); document.execCommand("copy"); document.body.removeChild(temp);
     window.location.href = "https://lin.ee/vHRDLCC";
@@ -319,7 +319,7 @@ body {
 
   // Particle System สไตล์ PinkJulie
   const P = document.getElementById('pts');
-  ['✦','★','♥','✿'].forEach(e => {
+  ['✦','★','♥','✿','🍇'].forEach(e => {
     for (let j = 0; j < 3; j++) {
       const d = document.createElement('div'); d.className = 'pt'; d.textContent = e;
       d.style.cssText = `left:${Math.random()*100}vw;font-size:${8+Math.random()*8}px;color:var(--pk);animation-duration:${10+Math.random()*13}s;animation-delay:${-Math.random()*25}s;`;
