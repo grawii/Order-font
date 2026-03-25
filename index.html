@@ -14,9 +14,13 @@
 }
 html { scroll-behavior: smooth; }
 body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; overflow-x: hidden; padding-bottom: 110px; }
+
+/* --- Particles --- */
 #pts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
 .pt { position: absolute; animation: ptUp linear infinite; opacity: 0; }
 @keyframes ptUp { 0% { transform: translateY(105vh); opacity: 0; } 8% { opacity: 0.45; } 100% { transform: translateY(-8vh) rotate(360deg); opacity: 0; } }
+
+/* --- Topbar & Drawer --- */
 .topbar { position: sticky; top: 0; z-index: 100; background: #0f071a; border-bottom: 2px solid var(--pk3); box-shadow: 0 2px 20px rgba(232,64,122,0.3); display: flex; align-items: center; padding: 0 20px; height: 56px; gap: 12px; }
 .ham { width: 38px; height: 38px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; cursor: pointer; border-radius: 8px; border: 1.5px solid var(--pk); background: rgba(255,128,181,0.12); }
 .ham span { display: block; width: 18px; height: 2px; background: #fff; transition: 0.3s; }
@@ -24,11 +28,14 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
 .ham.open span:nth-child(2) { opacity: 0; }
 .ham.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 .topbar-brand { font-family: 'Mitr', sans-serif; font-size: 18px; font-weight: 700; color: #fff; text-shadow: 0 0 12px var(--pk); }
+
 .overlay { position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.7); display: none; }
 .drawer { position: fixed; top: 0; left: 0; z-index: 201; width: 250px; height: 100vh; background: #0f071a; border-right: 2px solid var(--pk3); transform: translateX(-100%); transition: 0.3s; padding: 30px 0; }
 .drawer.open { transform: translateX(0); }
 .dr-item { display: block; padding: 15px 25px; color: var(--txt2); text-decoration: none; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.05); }
 .dr-item.active { color: var(--pk); background: rgba(255,128,181,0.1); border-left: 4px solid var(--pk); }
+
+/* --- Content Style --- */
 .view-page { display: none; min-height: 80vh; }
 .view-page.active { display: block; }
 .hero { background: linear-gradient(135deg, #1e0838 0%, #8e2a60 100%); padding: 45px 20px; text-align: center; border-bottom: 2px solid var(--pk3); }
@@ -36,16 +43,23 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
 .box { background: linear-gradient(135deg, #12091d, #0a0510); border: 1.5px solid var(--border-color); border-radius: 16px; padding: 20px; margin-bottom: 25px; }
 .sh { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(90deg, #1e0838 0%, transparent 100%); border-left: 4px solid var(--pk); border-radius: 0 12px 12px 0; padding: 10px 15px; margin: 25px 0 15px; }
 .sh h2 { font-size: 15px; font-weight: 700; color: #fff; }
+
 .grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-.item-card { background: var(--bg-card); border: 1.5px solid rgba(255,128,181,0.12); border-radius: 16px; padding: 12px; cursor: pointer; transition: 0.2s; }
+.item-card { background: var(--bg-card); border: 1.5px solid rgba(255,128,181,0.12); border-radius: 16px; padding: 12px; cursor: pointer; transition: 0.2s; position: relative; }
 .item-card.selected { border-color: var(--pk); background: rgba(255,128,181,0.1); box-shadow: 0 0 15px rgba(255,128,181,0.3); }
 .card-icon { width: 100%; aspect-ratio: 1/1; border-radius: 10px; object-fit: cover; margin-bottom: 8px; border: 1px solid rgba(255,255,255,0.05); }
 .card-title { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 4px; line-height: 1.3; }
 .card-desc { font-size: 10px; color: var(--txt2); line-height: 1.2; margin-bottom: 8px; height: 24px; overflow: hidden; }
-.card-price { background: var(--pk3); color: #fff; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; display: inline-block; box-shadow: 0 2px 8px rgba(232,64,122,0.4); }
+.price-container { display: flex; flex-direction: column; gap: 2px; }
+.card-price { background: var(--pk3); color: #fff; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; display: inline-block; box-shadow: 0 2px 8px rgba(232,64,122,0.4); width: fit-content; }
+.original-price { font-size: 10px; color: var(--txt2); text-decoration: line-through; margin-left: 2px; }
+
+/* --- Contact Page --- */
 .ct-link { display: flex; align-items: center; gap: 13px; padding: 14px; background: rgba(255,128,181,0.05); border: 1px solid rgba(255,128,181,0.1); border-radius: 14px; text-decoration: none; color: #fff; margin-bottom: 12px; transition: 0.2s; }
 .ct-link:hover { background: rgba(255,128,181,0.15); transform: translateX(5px); border-color: var(--pk); }
 .ct-ico { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+
+/* --- Bottom Bar & Modal --- */
 .bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #0f071a; border-top: 2px solid var(--pk3); padding: 15px 24px; display: flex; justify-content: space-between; align-items: center; transform: translateY(100%); transition: 0.3s; z-index: 4000; box-shadow: 0 -5px 20px rgba(0,0,0,0.5); }
 .bottom-bar.active { transform: translateY(0); }
 .bb-btn { background: var(--pk); color: #fff; border: none; padding: 10px 25px; border-radius: 10px; font-weight: 700; cursor: pointer; }
@@ -60,6 +74,7 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
   <div class="ham" id="hamBtn" onclick="toggleDrawer()"><span></span><span></span><span></span></div>
   <span class="topbar-brand">องุ่นหวาน Studio💖</span>
 </div>
+
 <div class="overlay" id="overlay" onclick="toggleDrawer()"></div>
 <div class="drawer" id="drawer">
   <div style="text-align:center; padding: 30px 0 20px 0; border-bottom: 1px solid rgba(255,128,181,0.1); margin-bottom: 10px;">
@@ -139,13 +154,13 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
       id: 'cat1', 
       name: 'ฟอนต์เครือ GRP - ดึงเมลเอง🔥', 
       products: [
-        { id: 'g1', name: 'มนตรา (GRP Mantra)', price: 89, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isPromo: false, img: 'https://img1.pic.in.th/images/IMG_4602.png', tags: ['เนื้อหา'] },
+        { id: 'g1', name: 'มนตรา (GRP Mantra)', price: 89, originalPrice: 129, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isPromo: false, img: 'https://img1.pic.in.th/images/IMG_4602.png', tags: ['เนื้อหา'] },
         { id: 'g2', name: 'ไฮสคูล (GRP High School)', price: 129, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isPromo: false, img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png', tags: ['เนื้อหา'] },
         { id: 'g3', name: 'คุ๊กกี้ (GRP Cookie)', price: 39, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isPromo: false, img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png', tags: ['เนื้อหา'] },
-        { id: 'g4', name: 'แคสเปอร์ (GRP Casper)', price: 99, detail: 'มีน้ำหนักเดียว มี (ตัวeng/ตัวเลข/symbol)', isPromo: false, img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png', tags: ['เนื้อหา'] },
-        { id: 'g5', name: 'PuffyPop (GRP PuffyPop)', price: 99, detail: 'มี 2 ไฟล์ (ปกติ/โปร่ง)', isPromo: false, img: 'https://img1.pic.in.th/images/IMG_3011.jpeg', tags: ['เนื้อหา', 'โปร่ง'] },
-        { id: 'g6', name: 'โมจิปัง (GRP MochiPung)', price: 59, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isPromo: false, img: 'https://img2.pic.in.th/IMG_4604f4cbfa878d2d0190.png', tags: ['เนื้อหา'] },
-        { id: 'g7', name: 'เล่าเรื่อง (GRP StoryTelling)', price: 59, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isPromo: false, img: 'https://img2.pic.in.th/Untitled82_20260325195517.png', tags: ['เนื้อหา'] }
+        { id: 'g4', name: 'แคสเปอร์ (GRP Casper)', price: 99, originalPrice: 129, detail: 'มีน้ำหนักเดียว มี (ตัวeng/ตัวเลข/symbol)', isPromo: false, img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png', tags: ['เนื้อหา'] },
+        { id: 'g5', name: 'PuffyPop (GRP PuffyPop)', price: 99, originalPrice: 169, detail: 'มี 2 ไฟล์ (ปกติ/โปร่ง)', isPromo: false, img: 'https://img1.pic.in.th/images/IMG_3011.jpeg', tags: ['เนื้อหา', 'โปร่ง'] },
+        { id: 'g6', name: 'โมจิปัง (GRP MochiPung)', price: 59, originalPrice: 129, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isPromo: false, img: 'https://img2.pic.in.th/IMG_4604f4cbfa878d2d0190.png', tags: ['เนื้อหา'] },
+        { id: 'g7', name: 'เล่าเรื่อง (GRP StoryTelling)', price: 59, originalPrice: 129, detail: 'มี 3 น้ำหนัก (ปกติ/หนา/บาง)', isPromo: false, img: 'https://img2.pic.in.th/Untitled82_20260325195517.png', tags: ['เนื้อหา'] }
       ]
     },
     { 
@@ -211,8 +226,8 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
       products: [
         { id: 'l1', name: 'Mochi Soft (LKT Mochi Soft)', price: 299, detail: 'มีคลิปสอนแต่งหัวป้ายแถมให้‼️', isPromo: false, img: 'https://img1.pic.in.th/images/-458_20260206201301.png', tags: ['เนื้อหา'] },
         { id: 'l2', name: 'Rochy (LKT Rochy)', price: 199, detail: 'มีคลิปสอนแต่งหัวป้ายแถมให้‼️', isPromo: false, img: 'https://img2.pic.in.th/-393_20260115175306.png', tags: ['โปร่ง'] },
-        { id: 'l3', name: 'Feather (LKT Feather)', price: 99, detail: 'รวมชพณ.', isPromo: false, img: 'https://img2.pic.in.th/-530_20260226002912.png', tags: ['เนื้อหา'] },
-        { id: 'l4', name: 'Bagie (LKT Bagie)', price: 79, detail: 'ราคาลงกลุ่มทักส่วนตัวเท่านั้น', isPromo: false, img: 'https://img2.pic.in.th/-587_20260310181031.png', tags: ['เนื้อหา'] }
+        { id: 'l3', name: 'Feather (LKT Feather)', price: 99, originalPrice: 159, detail: 'รวมชพณ.', isPromo: false, img: 'https://img2.pic.in.th/-530_20260226002912.png', tags: ['เนื้อหา'] },
+        { id: 'l4', name: 'Bagie (LKT Bagie)', price: 79, originalPrice: 129, detail: 'ราคาลงกลุ่มทักส่วนตัวเท่านั้น', isPromo: false, img: 'https://img2.pic.in.th/-587_20260310181031.png', tags: ['เนื้อหา'] }
       ]
     }
   ];
@@ -278,8 +293,15 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
 
   function createCardHtml(p, catName) {
     const isSel = cart.find(i => i.id === p.id) ? 'selected' : '';
+    let priceHtml = `<div class="card-price">฿${p.price}</div>`;
+    if(p.originalPrice) {
+      priceHtml = `<div class="price-container">
+                    <span class="original-price">฿${p.originalPrice}</span>
+                    <div class="card-price">฿${p.price}</div>
+                   </div>`;
+    }
     return `<div class="item-card ${isSel}" data-id="${p.id}" onclick="toggleItem('${p.id}','${catName}','${p.name}',${p.price},${p.isPromo || false})">
-      <img src="${p.img}" class="card-icon"><div class="card-title">${p.name}</div><div class="card-desc">${p.detail}</div><div class="card-price">฿${p.price}</div>
+      <img src="${p.img}" class="card-icon"><div class="card-title">${p.name}</div><div class="card-desc">${p.detail}</div>${priceHtml}
     </div>`;
   }
 
