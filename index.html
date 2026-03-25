@@ -6,41 +6,63 @@
 <title>องุ่นหวาน Studio⭐️</title>
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Mitr:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-/* --- CSS ต้นฉบับคงเดิม --- */
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-:root { --primary: #FFDBEF; --secondary: #DCD2F5; --bg-main: #EDE2FB; --bg-card: #EADBFB; --border-color: rgba(176,38,255,0.25); }
-body { font-family: 'Kanit', sans-serif; background: var(--bg-main); color: #9872A3; padding-bottom: 110px; overflow-x: hidden; }
-    
+:root {
+  --primary: #FCFFFF; 
+  --secondary: #DCD2F5; 
+  --bg-main: #EDE2FB; 
+  --bg-card: #EADBFB; 
+  --border-color: rgba(176,38,255,0.25);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Kanit', sans-serif;
+  background: var(--bg-main); color: #9872A3;
+  overflow-x: hidden;
+  padding-bottom: 110px; 
+}
 
-/* หน้า Full Page (Refresh View) */
-#fullPageCategory { position: fixed; inset: 0; background: var(--bg-main); z-index: 3000; display: none; overflow-y: auto; padding: 20px 20px 120px; }
-.back-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); }
-.back-btn { background: none; border: none; font-size: 28px; color: #9872A3; cursor: pointer; }
+/* --- Particle & Glow Background --- */
+.bg-glow-1 { position: fixed; top: -100px; left: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(176,38,255,0.15) 0%, rgba(0,0,0,0) 70%); z-index: -1; pointer-events: none; }
+.bg-glow-2 { position: fixed; bottom: 20%; right: -150px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,210,255,0.1) 0%, rgba(0,0,0,0) 70%); z-index: -1; pointer-events: none; }
+#pts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.pt { position: absolute; animation: ptUp linear infinite; opacity: 0; font-size: 12px; }
+@keyframes ptUp {
+  0%   { transform: translateY(105vh); opacity: 0; }
+  10%  { opacity: 0.5; }
+  90%  { opacity: 0.5; }
+  100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
 
-/* Hero & Tabs */
+/* --- UI Layout --- */
 .hero { background: linear-gradient(135deg, rgba(176,38,255,0.2) 0%, rgba(0,210,255,0.1) 100%); padding: 40px 20px 55px; text-align: center; position: relative; border-bottom: 1px solid var(--border-color); margin-bottom: 40px; }
 .hero-title { font-family: 'Mitr', sans-serif; font-size: 32px; font-weight: 700; color: #fff; text-shadow: 0 0 15px rgba(176,38,255,0.4); }
-.tab-container { position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); display: flex; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 30px; padding: 4px; width: 260px; z-index: 10; }
-.tab-btn { flex: 1; padding: 8px 0; border-radius: 25px; border: none; font-size: 13px; font-weight: 600; cursor: pointer; background: transparent; color: #9872A3; }
+.hero-detail { font-size: 13px; color: #9872A3; margin-top: 5px; opacity: 0.9; line-height: 1.4; }
+
+.tab-container { position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); display: flex; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 30px; padding: 4px; width: 260px; z-index: 10; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+.tab-btn { flex: 1; padding: 8px 0; border-radius: 25px; border: none; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; background: transparent; color: #9872A3; transition: 0.3s; }
 .tab-btn.active { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; }
 
-/* Grid & Cards */
-.content { max-width: 600px; margin: 0 auto; padding: 0 20px 50px; }
+.content { max-width: 600px; margin: 0 auto; padding: 0 20px 50px; position: relative; z-index: 5; }
 .grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
 .item-card { background: var(--bg-card); border: 1.5px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 16px; cursor: pointer; display: flex; flex-direction: column; transition: 0.2s; }
 .item-card.selected { border-color: var(--primary); background: linear-gradient(145deg, rgba(176,38,255,0.1) 0%, var(--bg-card) 100%); }
 .card-icon { width: 100%; aspect-ratio: 1/1; border-radius: 12px; margin-bottom: 10px; object-fit: cover; }
-.card-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-.card-detail { font-size: 11px; color: #9872A3; opacity: 0.8; margin-bottom: 10px; line-height: 1.2; }
+.card-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; color: #9872A3; }
+.card-desc { font-size: 11px; color: #9872A3; opacity: 0.8; margin-bottom: 10px; line-height: 1.2; flex-grow: 1; }
 .card-price { align-self: flex-start; background: rgba(152, 116, 162, 0.6); color: #fff; font-weight: 600; font-size: 13px; padding: 4px 10px; border-radius: 8px; }
 
-/* Bottom Bar */
+/* หน้า Full Page (ดูเพิ่มเติม) */
+#fullPageCategory { position: fixed; inset: 0; background: var(--bg-main); z-index: 3000; display: none; overflow-y: auto; padding: 20px 20px 120px; }
+.back-btn { background: none; border: none; font-size: 28px; color: #9872A3; cursor: pointer; margin-bottom: 15px; }
+
+/* Bottom Bar สีม่วงเข้ม #9774A2 */
 .bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #9774A2; border-top: 1px solid var(--primary); padding: 15px 24px; display: flex; justify-content: space-between; align-items: center; transform: translateY(100%); transition: 0.3s; z-index: 4000; }
 .bottom-bar.active { transform: translateY(0); }
 .bb-total { font-size: 20px; font-weight: 700; color: #fff; }
 .bb-btn { background: linear-gradient(135deg, var(--primary), #d946ef); color: #fff; border: none; border-radius: 25px; padding: 10px 24px; font-weight: 600; cursor: pointer; }
 
-/* Modal */
+/* Modal สรุปยอด */
 .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 5000; display: none; justify-content: center; align-items: center; }
 .modal-box { background: var(--bg-card); border: 2px solid var(--primary); border-radius: 20px; width: 90%; max-width: 400px; padding: 24px; color: #9872A3; }
 </style>
@@ -48,19 +70,20 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg-main); color: #987
 <body>
 
 <div id="mainPage">
+    <div class="bg-glow-1"></div><div class="bg-glow-2"></div><div id="pts"></div>
     <div class="hero">
       <div class="hero-title">องุ่นหวาน Studio💖</div>
-      <div style="font-size: 13px; color: #9872A3; margin-top: 5px; opacity: 0.9;">
-    จำหน่ายฟอนต์ลายมือ ราคาเริ่มต้นหลักสิบ✨
-</div>
+      <div class="hero-detail">จำหน่ายฟอนต์ลายมือหลากหลายเครือ ราคาเริ่มต้นหลักสิบ ✨</div>
+      
       <div class="tab-container">
-        <button class="tab-btn active" onclick="switchTab('info')">สินค้าแนะนำ</button>
-        <button class="tab-btn" onclick="switchTab('products')">รายการสินค้า</button>
+        <button class="tab-btn active" id="btn-info" onclick="switchTab('info')">แนะนำ</button>
+        <button class="tab-btn" id="btn-products" onclick="switchTab('products')">สินค้า</button>
       </div>
     </div>
     
     <div class="content">
       <div id="tab-info" style="display: block;">
+        <div style="margin-bottom:15px; font-weight:700;">✨ แนะนำพิเศษ</div>
         <div class="grid-container" id="recommendGrid"></div>
       </div>
       <div id="tab-products" style="display: none;">
@@ -70,10 +93,8 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg-main); color: #987
 </div>
 
 <div id="fullPageCategory">
-    <div class="back-header">
-        <button class="back-btn" onclick="closeFullPage()">←</button>
-        <h2 id="fullPageTitle" style="font-size:20px;"></h2>
-    </div>
+    <button class="back-btn" onclick="closeFullPage()">←</button>
+    <h2 id="fullPageTitle" style="margin-bottom:20px; color:#9872A3;"></h2>
     <div class="grid-container" id="fullPageGrid"></div>
 </div>
 
@@ -87,23 +108,23 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg-main); color: #987
 
 <div class="modal-overlay" id="summaryModal">
   <div class="modal-box">
-    <div style="display:flex; justify-content:space-between; margin-bottom:15px; color:#9771A2;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; color:#fff;">
       <div style="font-weight:600;">🛒 รายการที่เลือก</div>
       <div onclick="closeSummary()" style="cursor:pointer; font-size:24px;">×</div>
     </div>
-    <div id="modalItemsList" style="max-height:250px; overflow-y:auto;"></div>
-    <div style="border-top: 1px dashed #9771A2; margin:15px 0; padding-top:10px; display:flex; justify-content:space-between; color:#9771A2;">
-      <span>รวมทั้งสิ้น:</span>
+    <div id="modalItemsList" style="max-height:250px; overflow-y:auto; color:#fff;"></div>
+    <div style="border-top:1px dashed #fff; margin:15px 0; padding-top:10px; display:flex; justify-content:space-between; color:#fff;">
+      <span>ยอดชำระรวม:</span>
       <span style="font-size:20px; font-weight:700;">฿<span id="modalTotalPrice">0</span></span>
     </div>
-    <button onclick="checkout()" style="width:100%; background:#00d300; border:none; color:#FFFFFF; padding:14px; border-radius:12px; font-weight:600; cursor:pointer;">💬 คัดลอก & สั่งผ่าน LINE</button>
+    <button onclick="checkout()" style="width:100%; background:#00d300; border:none; color:#fff; padding:14px; border-radius:12px; font-weight:600; cursor:pointer;">💬 คัดลอก & สั่งผ่าน LINE</button>
   </div>
 </div>
-
 <script>
-  // [จุดแก้ไขหลัก] ใส่ข้อมูลสินค้าแต่ละชิ้นแยกกันตรงนี้
+  // [จุดแก้ไขหลัก] ข้อมูลสินค้า (ชื่อ ราคา รายละเอียด รูปภาพ แยกชิ้นได้อิสระ)
   const categories = [
     { 
+
       id: 'cat1', 
       name: 'ฟอนต์เครือ GRP', 
       products: [
@@ -147,29 +168,29 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg-main); color: #987
 
   let cart = [];
 
- // Particle Effect Script (ใส่กลับมาให้แล้ว)
-  const Pt = document.getElementById('pts');
+  // ระบบละอองดาว (Particle)
+  const PtContainer = document.getElementById('pts');
   ['✦','★','✨','✧'].forEach(e => {
-    for(let i=0; i<5; i++){
+    for(let i=0; i<6; i++){
       const d = document.createElement('div');
       d.className='pt'; d.textContent=e;
       d.style.cssText=`left:${Math.random()*100}vw;color:#9872A3;animation-duration:${10+Math.random()*15}s;animation-delay:-${Math.random()*20}s;`;
-      Pt.appendChild(d);
+      PtContainer.appendChild(d);
     }
   });
-    
+
   function renderAll() {
-    // โชว์สินค้าแนะนำ (ชิ้นแรกของแต่ละหมวด)
+    // แนะนำสินค้า (ดึงตัวแรกของแต่ละหมวด)
     document.getElementById('recommendGrid').innerHTML = categories.map(c => createCardHtml(c.products[0], c.name)).join('');
     
-    // โชว์หมวดหมู่สินค้า (หน้าหลักโชว์แค่ 4 ชิ้นแรก)
+    // สินค้าหน้าหลัก (โชว์หมวดละ 4 ชิ้น)
     let html = '';
     categories.forEach(c => {
-      const displayItems = c.products.slice(0, 4); // ดึงมาแค่ 4 ชิ้น
+      const displayItems = c.products.slice(0, 4); // แสดงแค่ 4 รายการแรก
       html += `
-        <div style="display:flex; justify-content:space-between; align-items:center; margin:20px 0 10px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin:25px 0 15px;">
           <h2 style="font-size:18px;">${c.name}</h2>
-          <button style="background:none; border:1px dashed #9872A3; color:#9872A3; padding:4px 12px; border-radius:8px; font-size:11px;" onclick="openFullPage('${c.id}')">ดูเพิ่มเติม</button>
+          <button style="background:none; border:1.px dashed #9872A3; color:#9872A3; padding:5px 12px; border-radius:10px; font-size:11px; cursor:pointer;" onclick="openFullPage('${c.id}')">ดูเพิ่มเติม</button>
         </div>
         <div class="grid-container">${displayItems.map(p => createCardHtml(p, c.name)).join('')}</div>
       `;
@@ -180,10 +201,10 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg-main); color: #987
   function createCardHtml(p, catName) {
     const isSel = cart.find(i => i.id === p.id) ? 'selected' : '';
     return `
-      <div class="item-card ${isSel}" data-id="${p.id}" onclick="toggleItem('${p.id}','${catName}','${p.name}',${p.price})">
+      <div class="item-card ${isSel}" data-id="${p.id}" onclick="toggleItem('${p.id}','${catName}','${p.name}',${p.price},'${p.img}')">
         <img src="${p.img}" class="card-icon">
         <div class="card-title">${p.name}</div>
-        <div class="card-detail">${p.detail}</div>
+        <div class="card-desc">${p.detail}</div>
         <div class="card-price">฿${p.price}</div>
       </div>`;
   }
@@ -191,7 +212,7 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg-main); color: #987
   function openFullPage(catId) {
     const cat = categories.find(c => c.id === catId);
     document.getElementById('fullPageTitle').innerText = cat.name;
-    // แสดงสินค้า "ทุกรายการ" ในหมวดนั้น
+    // แสดงสินค้า "ทั้งหมด" ในหมวดนั้น
     document.getElementById('fullPageGrid').innerHTML = cat.products.map(p => createCardHtml(p, cat.name)).join('');
     document.getElementById('mainPage').style.display = 'none';
     document.getElementById('fullPageCategory').style.display = 'block';
@@ -203,9 +224,9 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg-main); color: #987
     document.getElementById('mainPage').style.display = 'block';
   }
 
-  function toggleItem(id, cat, name, price) {
+  function toggleItem(id, cat, name, price, img) {
     const idx = cart.findIndex(i => i.id === id);
-    if(idx > -1) { cart.splice(idx, 1); } else { cart.push({id, cat, name, price}); }
+    if(idx > -1) { cart.splice(idx, 1); } else { cart.push({id, cat, name, price, img}); }
     document.querySelectorAll(`[data-id="${id}"]`).forEach(el => el.classList.toggle('selected'));
     updateBottomBar();
   }
@@ -222,14 +243,13 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg-main); color: #987
   function switchTab(t) {
     document.getElementById('tab-info').style.display = t === 'info' ? 'block' : 'none';
     document.getElementById('tab-products').style.display = t === 'products' ? 'block' : 'none';
-    const btns = document.querySelectorAll('.tab-btn');
-    btns[0].classList.toggle('active', t==='info');
-    btns[1].classList.toggle('active', t==='products');
+    document.getElementById('btn-info').classList.toggle('active', t==='info');
+    document.getElementById('btn-products').classList.toggle('active', t==='products');
   }
 
   function openSummary() {
     let html = '';
-    cart.forEach(i => { html += `<div style="display:flex; justify-content:space-between; margin-bottom:8px; color:#9771A2; font-size:14px;"><span>• ${i.name}</span><span>฿${i.price}</span></div>`; });
+    cart.forEach(i => { html += `<div style="display:flex; justify-content:space-between; margin-bottom:10px;"><span>• ${i.name}</span><span>฿${i.price}</span></div>`; });
     document.getElementById('modalItemsList').innerHTML = html;
     document.getElementById('modalTotalPrice').innerText = cart.reduce((s, i) => s + i.price, 0);
     document.getElementById('summaryModal').style.display = 'flex';
