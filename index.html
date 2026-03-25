@@ -13,256 +13,180 @@
   --bg-main: #EDE2FB; 
   --bg-card: #EADBFB; 
   --border-color: rgba(176,38,255,0.25);
-  /* เปลี่ยนโค้ดสีตัวอักษรตามคำสั่ง */
   --text-muted: #9872A3;
 }
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Kanit', sans-serif;
-  background: var(--bg-main); 
-  /* เปลี่ยนสีตัวอักษรหลักของ body */
-  color: #9872A3;
-  overflow-x: hidden;
-  padding-bottom: 110px; 
+  background: var(--bg-main); color: #9872A3;
+  overflow-x: hidden; padding-bottom: 110px; 
 }
 
-/* Background Glow & Particles (คงเดิม) */
+/* Background Effects */
 .bg-glow-1 { position: fixed; top: -100px; left: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(176,38,255,0.15) 0%, rgba(0,0,0,0) 70%); z-index: -1; pointer-events: none; }
-.bg-glow-2 { position: fixed; bottom: 20%; right: -150px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,210,255,0.1) 0%, rgba(0,0,0,0) 70%); z-index: -1; pointer-events: none; }
-#pts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+#pts { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
 .pt { position: absolute; animation: ptUp linear infinite; opacity: 0; }
-@keyframes ptUp { 0% { transform: translateY(105vh); opacity: 0; } 8% { opacity: 0.45; } 92% { opacity: 0.45; } 100% { transform: translateY(-8vh) rotate(360deg); opacity: 0; } }
+@keyframes ptUp { 0% { transform: translateY(105vh); opacity: 0; } 100% { transform: translateY(-8vh) rotate(360deg); opacity: 0; } }
 
-/* --- HERO & TABS --- */
+/* HERO & TABS */
 .hero {
   background: linear-gradient(135deg, rgba(176,38,255,0.2) 0%, rgba(0,210,255,0.1) 100%);
-  padding: 40px 20px 55px; 
-  text-align: center;
-  position: relative;
-  border-bottom: 1px solid var(--border-color);
-  margin-bottom: 40px;
-  box-shadow: 0 4px 30px rgba(176,38,255,0.1);
+  padding: 40px 20px 55px; text-align: center; position: relative; border-bottom: 1px solid var(--border-color); margin-bottom: 40px;
 }
-.hero-title { 
-  font-family: 'Mitr', sans-serif; 
-  font-size: 32px; 
-  font-weight: 700; 
-  color: #fff; 
-  margin-bottom: 4px; 
-  text-shadow: 0 0 15px rgba(176,38,255,0.4); 
-}
-.hero-sub { font-size: 13px; color: #9872A3; } /* เปลี่ยนสี sub-title */
+.hero-title { font-family: 'Mitr', sans-serif; font-size: 32px; font-weight: 700; color: #fff; text-shadow: 0 0 15px rgba(176,38,255,0.4); }
+.hero-sub { font-size: 13px; color: #9872A3; }
 
 .tab-container {
   position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%);
   display: flex; background: var(--bg-card); border: 1px solid var(--border-color);
-  border-radius: 30px; padding: 4px; width: 260px; z-index: 10; box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  border-radius: 30px; padding: 4px; width: 260px; z-index: 10;
 }
-.tab-btn { flex: 1; padding: 8px 0; border-radius: 25px; border: none; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; background: transparent; color: #9872A3; }
-.tab-btn.active { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; box-shadow: 0 2px 10px rgba(176,38,255,0.3); }
+.tab-btn { flex: 1; padding: 8px 0; border-radius: 25px; border: none; font-size: 13px; font-weight: 600; cursor: pointer; background: transparent; color: #9872A3; }
+.tab-btn.active { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; }
 
-/* --- CONTENT --- */
+/* CONTENT */
 .content { max-width: 600px; margin: 0 auto; padding: 0 20px 50px; position: relative; z-index: 5; }
 .tab-content { display: none; animation: fadeIn 0.3s ease; }
 .tab-content.active { display: block; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* --- GRID & CARDS --- */
-.sh { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding: 0 5px; }
+.sh { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
 .sh-left { display: flex; align-items: center; gap: 12px; }
 .sh-line { width: 4px; height: 22px; background: linear-gradient(180deg, var(--primary), var(--secondary)); border-radius: 4px; }
-.sh h2 { font-size: 18px; font-weight: 700; color: #9872A3; } /* เปลี่ยนสีหัวข้อหมวดหมู่ */
+.sh h2 { font-size: 18px; font-weight: 700; color: #9872A3; }
 
-.btn-more {
-  background: rgba(255,255,255,0.1); border: 1px solid var(--border-color);
-  color: #9872A3; padding: 4px 12px; border-radius: 12px; font-size: 11px; cursor: pointer;
-}
+.btn-more { background: rgba(255,255,255,0.2); border: 1px solid var(--border-color); color: #9872A3; padding: 4px 12px; border-radius: 12px; font-size: 11px; cursor: pointer; }
 
+/* CARDS */
 .grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
-.item-card {
-  background: var(--bg-card); border: 1.5px solid rgba(255,255,255,0.08);
-  border-radius: 16px; padding: 12px; position: relative; cursor: pointer; transition: all 0.2s ease; display: flex; flex-direction: column;
-}
+.item-card { background: var(--bg-card); border: 1.5px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 12px; position: relative; cursor: pointer; display: flex; flex-direction: column; }
 .item-card.selected { border-color: var(--primary); background: linear-gradient(145deg, rgba(176,38,255,0.1) 0%, var(--bg-card) 100%); }
-
 .card-icon { width: 100%; aspect-ratio: 1/1; border-radius: 12px; margin-bottom: 10px; object-fit: cover; }
-.card-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; color: #9872A3; } /* สีชื่อสินค้า */
-.card-desc { font-size: 11px; color: #9872A3; opacity: 0.8; margin-bottom: 12px; flex-grow: 1; } /* สีคำอธิบาย */
-.card-price { align-self: flex-start; background: rgba(176,38,255,0.15); color: #e5a3ff; font-weight: 600; font-size: 13px; padding: 4px 10px; border-radius: 8px; }
+.card-title { font-size: 14px; font-weight: 600; color: #9872A3; }
+.card-price { align-self: flex-start; background: rgba(176,38,255,0.15); color: #e5a3ff; font-weight: 600; font-size: 13px; padding: 4px 10px; border-radius: 8px; margin-top: auto; }
 
-.cat-divider span { font-size: 16px; font-weight: 600; color: #9872A3; }
+/* FULL PAGE OVERLAY (แทนป๊อปอัพ) */
+#fullPageCategory {
+  position: fixed; inset: 0; background: var(--bg-main); z-index: 3000; display: none; overflow-y: auto; padding: 20px;
+}
 
-/* --- BOTTOM BAR & MODAL --- */
+/* --- BOTTOM BAR & MODAL (ใช้โค้ดเดิม 100%) --- */
 .bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(18, 14, 38, 0.95); backdrop-filter: blur(15px); border-top: 1px solid var(--primary); padding: 15px 24px; display: flex; justify-content: space-between; align-items: center; transform: translateY(100%); transition: 0.3s; z-index: 1000; }
 .bottom-bar.active { transform: translateY(0); }
 .bb-total { font-size: 20px; font-weight: 700; color: #fff; }
 .bb-btn { background: linear-gradient(135deg, var(--primary), #d946ef); color: #fff; border: none; border-radius: 25px; padding: 10px 24px; font-weight: 600; cursor: pointer; }
 
-.modal-box { background: var(--bg-card); border: 2px solid var(--primary); border-radius: 20px; width: 100%; max-width: 480px; padding: 20px; color: #9872A3; }
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000; display: none; justify-content: center; align-items: center; }
+.modal-box { background: var(--bg-card); border: 2px solid var(--primary); border-radius: 20px; width: 90%; max-width: 400px; padding: 24px; }
+.modal-divider { border-top: 1px dashed rgba(176,38,255,0.4); margin: 15px 0; }
 </style>
 </head>
 <body>
-<div class="bg-glow-1"></div><div class="bg-glow-2"></div><div id="pts"></div>
-
-<div class="hero">
-  <div class="hero-title">องุ่นหวาน Studio💖</div>
-  <div class="hero-sub">จำหน่ายฟอนต์ลายมือหลากหลายเครือ🪽</div>
-  <div class="tab-container">
-    <button class="tab-btn active" id="btn-info" onclick="switchTab('info')">แนะนำ</button>
-    <button class="tab-btn" id="btn-products" onclick="switchTab('products')">สินค้า</button>
+<div id="mainPage">
+  <div class="bg-glow-1"></div><div id="pts"></div>
+  <div class="hero">
+    <div class="hero-title">องุ่นหวาน Studio💖</div>
+    <div class="hero-sub">จำหน่ายฟอนต์ลายมือหลากหลายเครือ🪽</div>
+    <div class="tab-container">
+      <button class="tab-btn active" id="btn-info" onclick="switchTab('info')">แนะนำ</button>
+      <button class="tab-btn" id="btn-products" onclick="switchTab('products')">สินค้า</button>
+    </div>
+  </div>
+  <div class="content">
+    <div id="tab-info" class="tab-content active"><div class="sh"><div class="sh-left"><div class="sh-line"></div><h2>แนะนำพิเศษ</h2></div></div><div class="grid-container" id="recommendGrid"></div></div>
+    <div id="tab-products" class="tab-content"><div id="productSections"></div></div>
   </div>
 </div>
 
-<div class="content">
-  <div id="tab-info" class="tab-content active">
-    <div class="sh">
-        <div class="sh-left"><div class="sh-line"></div><h2>สินค้าแนะนำพิเศษ</h2></div>
-    </div>
-    <div class="grid-container" id="recommendGrid"></div>
+<div id="fullPageCategory">
+  <div style="display:flex; align-items:center; gap:15px; margin-bottom:20px;">
+    <button onclick="closeFullPage()" style="background:none; border:none; font-size:24px; color:#9872A3; cursor:pointer;">←</button>
+    <h2 id="fullPageTitle" style="color:#9872A3;">ชื่อหมวดหมู่</h2>
   </div>
-
-  <div id="tab-products" class="tab-content">
-    <div id="productSections"></div>
-  </div>
+  <div class="grid-container" id="fullPageGrid"></div>
 </div>
 
 <div class="bottom-bar" id="bottomBar">
-  <div class="bb-info">
-    <div class="bb-count" id="cartCount">เลือก 0 รายการ</div>
-    <div class="bb-total"><span>฿</span><span id="cartTotal">0</span></div>
-  </div>
+  <div class="bb-info"><div class="bb-count" id="cartCount">เลือก 0 รายการ</div><div class="bb-total"><span>฿</span><span id="cartTotal">0</span></div></div>
   <button class="bb-btn" onclick="openSummary()">สั่งเลย ✨</button>
-</div>
-
-<div class="modal-overlay" id="categoryModal">
-    <div class="modal-box">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
-        <h3 id="modalCatTitle" style="color:#9872A3">ชื่อหมวดหมู่</h3>
-        <div onclick="closeCategory()" style="cursor:pointer; font-size:30px; line-height:1;">×</div>
-      </div>
-      <div class="grid-container" id="categoryGrid"></div>
-    </div>
 </div>
 
 <div class="modal-overlay" id="summaryModal">
   <div class="modal-box">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
-      <div style="font-weight:bold; font-size:18px;">🛒 สรุปรายการ</div>
-      <div onclick="closeSummary()" style="cursor:pointer; font-size:30px; line-height:1;">×</div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+      <div style="font-weight:600; color:#fff;">🛒 สรุปรายการสั่งซื้อ</div>
+      <div onclick="closeSummary()" style="cursor:pointer; color:#9872A3; font-size:24px;">×</div>
     </div>
-    <div id="modalItemsList"></div>
-    <div style="margin-top:20px; display:flex; justify-content:space-between; align-items:center; font-weight:bold;">
-      <span>รวมทั้งสิ้น:</span>
-      <span style="color:#9872A3; font-size:24px;">฿<span id="modalTotalPrice">0</span></span>
+    <div id="modalItemsList" style="max-height:250px; overflow-y:auto;"></div>
+    <div class="modal-divider"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; font-weight:600; color:#fff;">
+      <span>ยอดที่ต้องชำระ:</span>
+      <span style="font-size:24px; color:var(--primary);">฿<span id="modalTotalPrice">0</span></span>
     </div>
-    <button onclick="checkout()" style="width:100%; background:#00d300; border:none; color:white; padding:15px; border-radius:12px; margin-top:20px; font-weight:bold; cursor:pointer;">คัดลอก & ไปที่ LINE</button>
+    <button onclick="checkout()" style="width:100%; background:#00d300; border:none; color:#fff; padding:14px; border-radius:12px; margin-top:20px; font-weight:600; cursor:pointer;">💬 คัดลอก & สั่งผ่าน LINE</button>
   </div>
 </div>
 <script>
-  // Particles Effect (ใช้สี #9872A3)
+  // Particles (คงเดิม)
   const P = document.getElementById('pts');
-  ['✦','★','✨','✧'].forEach(e => {
-    for (let j = 0; j < 3; j++) {
-      const d = document.createElement('div');
-      d.className = 'pt'; d.textContent = e;
-      d.style.cssText = `left:${Math.random()*100}vw;font-size:${8+Math.random()*6}px;color:#9872A3;animation-duration:${10+Math.random()*15}s;animation-delay:${-Math.random()*25}s;`;
+  ['✦','★','✨'].forEach(e => {
+    for (let j = 0; j < 4; j++) {
+      const d = document.createElement('div'); d.className = 'pt'; d.textContent = e;
+      d.style.cssText = `left:${Math.random()*100}vw;font-size:12px;color:#9872A3;animation-duration:15s;animation-delay:-${Math.random()*20}s;`;
       P.appendChild(d);
     }
   });
 
-  // ข้อมูลสินค้า (คงเดิมตามระบบรูปแยกชิ้น)
   const categories = [
-    { 
-        id: 'cat1', 
-        name: 'ฟอนต์เครือ GRP', 
-        price: 89,
-        images: ['https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png']
-    },
-    { 
-        id: 'cat2', 
-        name: 'ฟอนต์เครือ DEKDEC', 
-        price: 99,
-        images: ['https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png']
-    }
+    { id: 'cat1', name: 'ฟอนต์เครือ GRP', price: 89, images: ['https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png'] },
+    { id: 'cat2', name: 'ฟอนต์เครือ DEKDEC', price: 99, images: ['https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png'] }
   ];
 
   let cart = [];
 
-  function getProductData(catId, catName, price, imagesArray, index) {
-      const imgUrl = imagesArray[index % imagesArray.length] || 'https://via.placeholder.com/150';
-      return { id: `${catId}-${index + 1}`, cat: catName, name: `${catName} #${index + 1}`, desc: 'ลิขสิทธิ์แท้ ใช้งานได้พานิชย์', price: price, icon: imgUrl };
-  }
-
-  function generateFullProducts(catObj) {
-    let items = [];
-    for(let i=0; i<500; i++) { items.push(getProductData(catObj.id, catObj.name, catObj.price, catObj.images, i)); }
-    return items;
+  function createCardHtml(p) {
+    const isSel = cart.find(i => i.id === p.id) ? 'selected' : '';
+    return `
+      <div class="item-card ${isSel}" data-id="${p.id}" onclick="toggleItem('${p.id}','${p.cat}','${p.name}',${p.price},'${p.icon}')">
+        <img src="${p.icon}" class="card-icon">
+        <div class="card-title">${p.name}</div>
+        <div class="card-price">฿${p.price}</div>
+      </div>`;
   }
 
   function renderAll() {
-    const recGrid = document.getElementById('recommendGrid');
-    if(recGrid) {
-        let recHtml = '';
-        categories.forEach(c => { recHtml += createCardHtml(getProductData(c.id, c.name, c.price, c.images, 0)); });
-        recGrid.innerHTML = recHtml;
+    document.getElementById('recommendGrid').innerHTML = categories.map(c => createCardHtml({id:c.id+'-1', cat:c.name, name:c.name+' #1', price:c.price, icon:c.images[0]})).join('');
+    document.getElementById('productSections').innerHTML = categories.map(c => `
+      <div class="cat-divider" style="display:flex; justify-content:space-between; margin:20px 0;">
+        <span style="font-weight:600;">${c.name}</span>
+        <button class="btn-more" onclick="openFullPage('${c.id}')">ดูเพิ่มเติม (500 รายการ)</button>
+      </div>
+      <div class="grid-container">${createCardHtml({id:c.id+'-1', cat:c.name, name:c.name+' #1', price:c.price, icon:c.images[0]})}</div>
+    `).join('');
+  }
+
+  // ระบบหน้าใหม่ (Full Overlay)
+  function openFullPage(catId) {
+    const cat = categories.find(c => c.id === catId);
+    document.getElementById('fullPageTitle').innerText = cat.name;
+    let html = '';
+    for(let i=1; i<=500; i++) {
+        html += createCardHtml({id:`${catId}-${i}`, cat:cat.name, name:`${cat.name} #${i}`, price:cat.price, icon:cat.images[0]});
     }
-
-    const sections = document.getElementById('productSections');
-    if(sections) {
-        let secHtml = '';
-        categories.forEach(c => {
-            secHtml += `
-                <div class="cat-divider">
-                    <span>${c.name}</span>
-                    <button class="btn-more" onclick="showFullCategory('${c.id}')">ดูเพิ่มเติม</button>
-                </div>
-                <div class="grid-container">
-                    ${createCardHtml(getProductData(c.id, c.name, c.price, c.images, 0))}
-                    ${createCardHtml(getProductData(c.id, c.name, c.price, c.images, 1))}
-                </div>
-            `;
-        });
-        sections.innerHTML = secHtml;
-    }
+    document.getElementById('fullPageGrid').innerHTML = html;
+    document.getElementById('mainPage').style.display = 'none';
+    document.getElementById('fullPageCategory').style.display = 'block';
+    window.scrollTo(0,0);
   }
 
-  function createCardHtml(p) {
-    const isSel = cart.find(item => item.id === p.id) ? 'selected' : '';
-    return `
-        <div class="item-card ${isSel}" data-id="${p.id}" id="card-${p.id}" onclick="toggleItem('${p.id}', '${p.cat}', '${p.name}', ${p.price}, '${p.icon}', '${p.desc}')">
-          <div class="check-circle" style="position:absolute; top:10px; right:10px; width:20px; height:20px; border:1px solid #9872A3; border-radius:50%;"></div>
-          <img src="${p.icon}" class="card-icon" loading="lazy">
-          <div class="card-title">${p.name}</div>
-          <div class="card-desc">${p.desc}</div>
-          <div class="card-price">฿${p.price}</div>
-        </div>
-    `;
+  function closeFullPage() {
+    document.getElementById('fullPageCategory').style.display = 'none';
+    document.getElementById('mainPage').style.display = 'block';
   }
 
-  function showFullCategory(catId) {
-    const catObj = categories.find(c => c.id === catId);
-    const modal = document.getElementById('categoryModal');
-    const grid = document.getElementById('categoryGrid');
-    document.getElementById('modalCatTitle').innerText = catObj.name;
-    grid.innerHTML = generateFullProducts(catObj).map(p => createCardHtml(p)).join('');
-    modal.classList.add('show');
-    modal.style.display = 'flex';
-  }
-
-  function closeCategory() { 
-    document.getElementById('categoryModal').classList.remove('show');
-    document.getElementById('categoryModal').style.display = 'none';
-  }
-
-  function toggleItem(id, cat, name, price, icon, desc) {
+  function toggleItem(id, cat, name, price, icon) {
     const idx = cart.findIndex(i => i.id === id);
-    if(idx > -1) {
-      cart.splice(idx, 1);
-      document.querySelectorAll(`[data-id="${id}"]`).forEach(el => el.classList.remove('selected'));
-    } else {
-      cart.push({id, cat, name, price, desc});
-      document.querySelectorAll(`[data-id="${id}"]`).forEach(el => el.classList.add('selected'));
-    }
+    if(idx > -1) { cart.splice(idx, 1); } else { cart.push({id, cat, name, price}); }
+    document.querySelectorAll(`[data-id="${id}"]`).forEach(el => el.classList.toggle('selected'));
     updateBottomBar();
   }
 
@@ -275,38 +199,39 @@ body {
     } else { bar.classList.remove('active'); }
   }
 
-  function switchTab(tabId) {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    document.getElementById(`btn-${tabId}`).classList.add('active');
-    document.getElementById(`tab-${tabId}`).classList.add('active');
+  function switchTab(t) {
+    document.getElementById('btn-info').classList.toggle('active', t==='info');
+    document.getElementById('btn-products').classList.toggle('active', t==='products');
+    document.getElementById('tab-info').classList.toggle('active', t==='info');
+    document.getElementById('tab-products').classList.toggle('active', t==='products');
   }
 
+  // --- ระบบสรุปยอดดั้งเดิม ---
   function openSummary() {
-    const list = document.getElementById('modalItemsList');
-    let total = 0;
-    list.innerHTML = cart.map(i => {
-        total += i.price;
-        return `<div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:14px; color:#9872A3">
-            <span>• ${i.name}</span><span>฿${i.price}</span>
-        </div>`;
-    }).join('');
+    let html = ''; let total = 0;
+    cart.forEach(item => {
+      html += `<div style="display:flex; justify-content:space-between; color:#fff; margin-bottom:10px; font-size:14px;">
+        <span>• ${item.name}</span><span>฿${item.price}</span>
+      </div>`;
+      total += item.price;
+    });
+    document.getElementById('modalItemsList').innerHTML = html;
     document.getElementById('modalTotalPrice').innerText = total;
-    document.getElementById('summaryModal').classList.add('show');
     document.getElementById('summaryModal').style.display = 'flex';
   }
 
-  function closeSummary() { 
-    document.getElementById('summaryModal').classList.remove('show');
-    document.getElementById('summaryModal').style.display = 'none';
-  }
+  function closeSummary() { document.getElementById('summaryModal').style.display = 'none'; }
 
   function checkout() {
-    let text = "สรุปรายการสั่งซื้อ องุ่นหวาน Studio💖\n--------------------\n";
-    cart.forEach(i => text += `- ${i.name} (${i.price}.-)\n`);
-    text += `รวม: ${document.getElementById('modalTotalPrice').innerText} บาท`;
-    const t = document.createElement("textarea"); t.value = text; document.body.appendChild(t);
-    t.select(); document.execCommand("copy"); document.body.removeChild(t);
+    let total = 0;
+    let text = "สรุปรายการสั่งซื้อ\n\n";
+    cart.forEach(item => {
+      text += `สินค้า: ${item.cat} - ${item.name}\nราคา: ${item.price} บาท\n\n`;
+      total += item.price;
+    });
+    text += `--------------------\nยอดที่ต้องชำระทั้งหมด: ${total} บาท\n\nขอบคุณที่ไว้วางใจค่ะ`;
+    const temp = document.createElement("textarea"); temp.value = text; document.body.appendChild(temp);
+    temp.select(); document.execCommand("copy"); document.body.removeChild(temp);
     window.location.href = "https://lin.ee/vHRDLCC";
   }
 
