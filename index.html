@@ -129,13 +129,13 @@ body {
       name: 'ฟอนต์เครือ AM', 
       products: [
         // เฉพาะกลุ่มนี้ที่ตั้งค่า isPromo: true เพื่อรับส่วนลด 2 ชิ้น 100.-
-        { id: 'a1', name: 'บัลเดอร์ (AM Balder)', price: 59, originalPrice: 89, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png' },
-        { id: 'a2', name: 'ซันเดย์ (AM Sunday)', price: 59, originalPrice: 89, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png' },
-        { id: 'a3', name: 'เรนเจอร์ (AM Ranger)', price: 59, originalPrice: 89, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png' },
-        { id: 'a4', name: 'วินเทอร์ (AM Winter)', price: 59, originalPrice: 89, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png' },
-        { id: 'a5', name: 'เอสเม่ (AM Esme)', price: 59, originalPrice: 89, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png' },
-        { id: 'a6', name: 'เทียนหอม (AM Tianhom)', price: 59, originalPrice: 89, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png' },
-        { id: 'a7', name: 'โอลิเวีย (AM Olivia)', price: 59, originalPrice: 89, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png' }
+        { id: 'a1', name: 'บัลเดอร์ (AM Balder)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png' },
+        { id: 'a2', name: 'ซันเดย์ (AM Sunday)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png' },
+        { id: 'a3', name: 'เรนเจอร์ (AM Ranger)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png' },
+        { id: 'a4', name: 'วินเทอร์ (AM Winter)', price: 59,  isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png' },
+        { id: 'a5', name: 'เอสเม่ (AM Esme)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png' },
+        { id: 'a6', name: 'เทียนหอม (AM Tianhom)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png' },
+        { id: 'a7', name: 'โอลิเวีย (AM Olivia)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png' }
       ]
     },
     { 
@@ -193,15 +193,14 @@ body {
     document.getElementById('productSections').innerHTML = html;
   }
 
-  function createCardHtml(p, catName) {
+    function createCardHtml(p, catName) {
     const isSel = cart.find(i => i.id === p.id) ? 'selected' : '';
-    const oldPrice = p.originalPrice ? `<span class="old-price">฿${p.originalPrice}</span>` : '';
     return `
-      <div class="item-card ${isSel}" data-id="${p.id}" onclick="toggleItem('${p.id}','${catName}','${p.name}',${p.price},${p.isPromo})">
+      <div class="item-card ${isSel}" data-id="${p.id}" onclick="toggleItem('${p.id}','${catName}','${p.name}',${p.price},${p.isPromo || false})">
         <img src="${p.img}" class="card-icon">
         <div class="card-title">${p.name}</div>
         <div class="card-desc">${p.detail}</div>
-        <div class="card-price">${oldPrice}฿${p.price}</div>
+        <div class="card-price">฿${p.price}</div>
       </div>`;
   }
 
