@@ -79,7 +79,7 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
 
 <div class="overlay" id="overlay" onclick="toggleDrawer()"></div>
 <div class="drawer" id="drawer">
-  <div style="text-align:center; padding: 20px 0;"><div style="font-size:40px;">🍇</div></div>
+  <div style="text-align:center; padding: 20px 0;"><div style="font-size:40px;">องุ่นหวาน Studio</div></div>
   <a href="javascript:void(0)" class="dr-item active" id="m-home" onclick="navTo('home')">🏠 หน้าแรก</a>
   <a href="javascript:void(0)" class="dr-item" id="m-shop" onclick="navTo('shop')">🎨 สินค้าทั้งหมด</a>
   <a href="javascript:void(0)" class="dr-item" id="m-contact" onclick="navTo('contact')">📱 ติดต่อสอบถาม</a>
@@ -143,8 +143,7 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
   </div>
 </div>
 <script>
-  // ข้อมูลสินค้าเดิม + เพิ่ม tags สำหรับหมวดหมู่ย่อย (ระบุทับซ้อนได้)
-  // tags: ['โปร่ง', 'เนื้อหา', 'อิโมจิ']
+  // ข้อมูลสินค้าเดิม (คงเดิม 100% พร้อมระบุหมวดหมู่ย่อย)
   const categories = [
     { 
       id: 'cat1', 
@@ -162,7 +161,8 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
       products: [
         { id: 'a1', name: 'บัลเดอร์ (AM Balder)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img1.pic.in.th/images/06E02B71-90EC-4ABB-B1D5-B16D571E69A1.jpeg', tags: ['เนื้อหา'] },
         { id: 'a2', name: 'ซันเดย์ (AM Sunday)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img2.pic.in.th/D1E3E059-CE9D-4BB4-8D44-C0FEB86C1F30.jpeg', tags: ['เนื้อหา'] },
-        { id: 'a3', name: 'เรนเจอร์ (AM Ranger)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img2.pic.in.th/CF5D39C1-27F2-40C7-A907-FFB7BAF60226.jpeg', tags: ['โปร่ง'] }
+        { id: 'a3', name: 'เรนเจอร์ (AM Ranger)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img2.pic.in.th/CF5D39C1-27F2-40C7-A907-FFB7BAF60226.jpeg', tags: ['โปร่ง'] },
+        { id: 'a4', name: 'วินเทอร์ (AM Winter)', price: 59, isPromo: true, detail: 'โปร 2 ฟอนต์ 100.-', img: 'https://img1.pic.in.th/images/1A872D06-44D6-42D9-A220-0FC54C97763B.jpeg', tags: ['โปร่ง'] }
       ]
     },
     { 
@@ -178,48 +178,75 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
   let cart = [];
   const subCats = ['โปร่ง', 'เนื้อหา', 'อิโมจิ'];
 
+  // ฟังก์ชันสลับหน้า Page
   function navTo(pageId) {
     document.querySelectorAll('.view-page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.dr-item').forEach(m => m.classList.remove('active'));
     document.getElementById('page-' + pageId).classList.add('active');
-    document.getElementById('m-' + pageId).classList.add('active');
+    if(document.getElementById('m-' + pageId)) document.getElementById('m-' + pageId).classList.add('active');
+    
+    // เคลียร์หน้า Full Page ทุกครั้งที่เปลี่ยนหน้าหลัก
+    closeFullPage();
+
     if (pageId === 'shop') renderShop();
     if (pageId === 'home') renderHome();
     closeDrawer();
     window.scrollTo(0,0);
   }
 
-  function toggleDrawer() {
-    document.getElementById('drawer').classList.toggle('open');
-    document.getElementById('overlay').style.display = document.getElementById('drawer').classList.contains('open') ? 'block' : 'none';
-    document.getElementById('hamBtn').classList.toggle('open');
-  }
-  function closeDrawer() { 
-    document.getElementById('drawer').classList.remove('open');
-    document.getElementById('overlay').style.display = 'none';
-    document.getElementById('hamBtn').classList.remove('open');
-  }
-
+  // แสดงผลหน้าแรก (แนะนำ 4 ชิ้นแรก)
   function renderHome() {
-    // แสดงสินค้าแนะนำ (สมมติว่าเป็นสินค้าตัวแรกของทุกเครือ)
-    document.getElementById('home-recommend').innerHTML = categories.map(c => createCardHtml(c.products[0], c.name)).join('');
+    let recItems = [];
+    categories.forEach(c => recItems.push(...c.products.slice(0,2))); // ดึงเครือละ 2 ชิ้นมาโชว์
+    document.getElementById('home-recommend').innerHTML = recItems.map(p => {
+       const catName = categories.find(c => c.products.includes(p)).name;
+       return createCardHtml(p, catName);
+    }).join('');
   }
 
+  // แสดงผลหน้าสินค้าทั้งหมด (แบ่งหมวดหมู่หลัก > ย่อย)
   function renderShop() {
     let html = '';
     categories.forEach(cat => {
-      html += `<div class="sh" style="background:none; border-bottom:1px solid var(--pk3); border-radius:0;"><h2>${cat.name}</h2></div>`;
+      html += `<div class="sh" style="background:none; border-bottom:1px solid var(--pk3); border-radius:0; margin-top:40px;"><h2>${cat.name}</h2></div>`;
+      
       subCats.forEach(sub => {
         const filtered = cat.products.filter(p => p.tags && p.tags.includes(sub));
         if (filtered.length > 0) {
-          html += `<div style="margin:10px 0; color:var(--pk2); font-size:12px; font-weight:700;">📂 หมวดหมู่: ฟอนต์${sub}</div>`;
-          html += `<div class="grid-container" style="margin-bottom:20px;">${filtered.map(p => createCardHtml(p, cat.name)).join('')}</div>`;
+          html += `
+            <div style="display:flex; justify-content:space-between; align-items:center; margin:15px 0 10px;">
+               <div style="color:var(--pk2); font-size:12px; font-weight:700;">📂 หมวดหมู่: ฟอนต์${sub}</div>
+               <button onclick="viewSubCategory('${cat.id}', '${sub}')" style="background:none; border:1px solid var(--pk); color:var(--pk); padding:2px 8px; border-radius:10px; font-size:10px; cursor:pointer;">ดูทั้งหมด</button>
+            </div>
+            <div class="grid-container">${filtered.slice(0, 4).map(p => createCardHtml(p, cat.name)).join('')}</div>
+          `;
         }
       });
     });
     document.getElementById('shop-content').innerHTML = html;
   }
 
+  // ฟังก์ชัน "ดูเพิ่มเติม" รายหมวดหมู่ย่อย
+  function viewSubCategory(catId, subTagName) {
+    const cat = categories.find(c => c.id === catId);
+    const filtered = cat.products.filter(p => p.tags && p.tags.includes(subTagName));
+    
+    document.getElementById('fullPageTitle').innerText = `${cat.name} (${subTagName})`;
+    document.getElementById('fullPageGrid').innerHTML = filtered.map(p => createCardHtml(p, cat.name)).join('');
+    
+    document.getElementById('page-shop').style.display = 'none';
+    document.getElementById('fullPageCategory').style.display = 'block';
+    window.scrollTo(0,0);
+  }
+
+  function closeFullPage() {
+    document.getElementById('fullPageCategory').style.display = 'none';
+    if(document.getElementById('page-shop').classList.contains('active')) {
+        document.getElementById('page-shop').style.display = 'block';
+    }
+  }
+
+  // --- ฟังก์ชันพื้นฐานอื่นๆ (คงเดิม) ---
   function createCardHtml(p, catName) {
     const isSel = cart.find(i => i.id === p.id) ? 'selected' : '';
     return `
@@ -243,8 +270,8 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
     const res = calculateTotal();
     if (cart.length > 0) {
       bar.classList.add('active');
-      document.getElementById('cartCount').innerText = `เลือก ${cart.length} รายการ`;
       document.getElementById('cartTotal').innerText = res.total;
+      document.getElementById('cartCount').innerText = `เลือก ${cart.length} รายการ`;
     } else bar.classList.remove('active');
   }
 
@@ -257,7 +284,7 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
 
   function openSummary() {
     let html = ''; const res = calculateTotal();
-    cart.forEach(i => html += `<div style="display:flex; justify-content:space-between; margin-bottom:8px;"><span>• ${i.name}</span><span>฿${i.price}</span></div>`);
+    cart.forEach(i => html += `<div style="display:flex; justify-content:space-between; margin-bottom:10px;"><span>• ${i.name}</span><span>฿${i.price}</span></div>`);
     document.getElementById('modalItemsList').innerHTML = html;
     document.getElementById('promoNotice').innerText = res.discount > 0 ? `✨ ส่วนลด AM: -฿${res.discount}` : '';
     document.getElementById('modalTotalPrice').innerText = res.total;
@@ -268,16 +295,27 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
   function checkout() {
     const res = calculateTotal();
     let text = "สรุปรายการสั่งซื้อ💖\n\n" + cart.map(i => `• ${i.cat}: ${i.name} (${i.price}.-)`).join('\n');
-    if(res.discount > 0) text += `\n\nส่วนลด: -${res.discount} บาท`;
-    text += `\nยอดรวม: ${res.total} บาท\n--------------------\nขอบคุณที่มีอุดหนุนและใช้บริการร้านองุ่นนะคะ ✨\nรอองุ่นตอบกลับภายใน 5-10 นาทีน้า☁️🫶🏻`;
+    if(res.discount > 0) text += `\n\nส่วนลด AM: -${res.discount} บาท`;
+    text += `\nยอดสุทธิ: ${res.total} บาท\n--------------------\nขอบคุณที่มาอุดหนุนร้านองุ่นนะคะ⭐️\nรอองุ่นตอบกลับภายใน 5-10 นาทีน้า🫶🏻☁️`;
     const temp = document.createElement("textarea"); temp.value = text; document.body.appendChild(temp);
     temp.select(); document.execCommand("copy"); document.body.removeChild(temp);
     window.location.href = "https://line.me/ti/p/@309ranuu";
   }
 
+  function toggleDrawer() {
+    document.getElementById('drawer').classList.toggle('open');
+    document.getElementById('overlay').style.display = document.getElementById('drawer').classList.contains('open') ? 'block' : 'none';
+    document.getElementById('hamBtn').classList.toggle('open');
+  }
+  function closeDrawer() { 
+    document.getElementById('drawer').classList.remove('open');
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('hamBtn').classList.remove('open');
+  }
+
   // Particles
   const P = document.getElementById('pts');
-  ['✦','🖍️','★','♥','🍇'].forEach(e => {
+  ['✦','★','♥'].forEach(e => {
     for (let j = 0; j < 3; j++) {
       const d = document.createElement('div'); d.className = 'pt'; d.textContent = e;
       d.style.cssText = `left:${Math.random()*100}vw;font-size:${10+Math.random()*10}px;color:var(--pk);animation-duration:${10+Math.random()*15}s;animation-delay:${-Math.random()*20}s;`;
@@ -287,5 +325,3 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg); color: #fff; ove
 
   renderHome();
 </script>
-</body>
-</html>
