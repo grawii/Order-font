@@ -103,7 +103,7 @@ body {
       <div onclick="closeSummary()" style="cursor:pointer; font-size:24px;">×</div>
     </div>
     <div id="modalItemsList" style="max-height:250px; overflow-y:auto; color:#9872A3;"></div>
-    <div id="promoNotice" style="color:#d946ef; font-size:12px; margin-top:10px; font-weight:bold;"></div>
+    <div id="promoNotice" style="color:#FFB3DA; font-size:12px; margin-top:10px; font-weight:bold;"></div>
     <div style="border-top:1px dashed #9872A3; margin:15px 0; padding-top:10px; display:flex; justify-content:space-between; color:#9872A3;">
       <span>ยอดชำระรวม:</span>
       <span style="font-size:20px; font-weight:700;">฿<span id="modalTotalPrice">0</span></span>
@@ -164,17 +164,16 @@ body {
   });
 
   // [Logic] คำนวณส่วนลดเฉพาะสินค้าที่มี isPromo: true (เครือ AM)
-  function calculateTotal() {
+    function calculateTotal() {
     let subtotal = cart.reduce((s, i) => s + i.price, 0);
-    let promoItemsCount = cart.filter(i => i.isPromo).length;
-    let discount = 0;
+    let promoCount = cart.filter(i => i.isPromo).length;
+    
+    // คำนวณส่วนลด: ทุกๆ 2 ชิ้น จะลด 18 บาท (เพื่อให้ 118 เหลือ 100)
+    // ใช้สูตร: เอาจำนวนชิ้นหาร 2 (ตัดเศษ) แล้วคูณด้วยส่วนลด 18 บาท
+    let pairCount = Math.floor(promoCount / 2); 
+    let discount = pairCount * 18;
 
-    // เงื่อนไขเครือ AM: 2 ชิ้น 100 / 3 ชิ้น 159 / 4 ชิ้น 200
-    if (promoItemsCount === 2) discount = 18;       // (59*2)-100 = 18
-    else if (promoItemsCount === 3) discount = 18;  // (59*3)-159 = 18
-    else if (promoItemsCount >= 4) discount = 36;   // (59*4)-200 = 36
-
-    return { total: subtotal - discount, discount: discount };
+    return { subtotal, total: subtotal - discount, discount };
   }
 
   function renderAll() {
