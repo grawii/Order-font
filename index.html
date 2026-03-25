@@ -4,104 +4,62 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>องุ่นหวาน Studio⭐️</title>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Mitr:wght@400;600;700&family=Mitr:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Mitr:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+/* --- CSS ต้นฉบับคงเดิม --- */
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-:root {
-  --primary: #FCFFFF; 
-  --secondary: #DCD2F5; 
-  --bg-main: #EDE2FB; 
-  --bg-card: #EADBFB; 
-  --border-color: rgba(176,38,255,0.25);
-  --text-muted: #9872A3;
-}
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Kanit', sans-serif;
-  background: var(--bg-main); color: #9872A3;
-  overflow-x: hidden;
-  padding-bottom: 110px; 
-}
+:root { --primary: #FCFFFF; --secondary: #DCD2F5; --bg-main: #EDE2FB; --bg-card: #EADBFB; --border-color: rgba(176,38,255,0.25); }
+body { font-family: 'Kanit', sans-serif; background: var(--bg-main); color: #9872A3; padding-bottom: 110px; overflow-x: hidden; }
 
-/* --- CSS สำหรับหน้าใหม่ (Full Page Overlay) --- */
-#fullPageCategory {
-  position: fixed; inset: 0; background: var(--bg-main); z-index: 3000; display: none; overflow-y: auto; padding: 20px;
-}
+/* หน้า Full Page (Refresh View) */
+#fullPageCategory { position: fixed; inset: 0; background: var(--bg-main); z-index: 3000; display: none; overflow-y: auto; padding: 20px 20px 120px; }
 .back-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); }
-.back-btn { background: none; border: none; font-size: 28px; color: #9872A3; cursor: pointer; line-height: 1; }
+.back-btn { background: none; border: none; font-size: 28px; color: #9872A3; cursor: pointer; }
 
-/* Background Glow & Particles */
-.bg-glow-1 { position: fixed; top: -100px; left: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(176,38,255,0.15) 0%, rgba(0,0,0,0) 70%); z-index: -1; pointer-events: none; }
-.bg-glow-2 { position: fixed; bottom: 20%; right: -150px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,210,255,0.1) 0%, rgba(0,0,0,0) 70%); z-index: -1; pointer-events: none; }
-#pts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-.pt { position: absolute; animation: ptUp linear infinite; opacity: 0; }
-@keyframes ptUp { 0% { transform: translateY(105vh); opacity: 0; } 100% { transform: translateY(-8vh) rotate(360deg); opacity: 0; } }
+/* Hero & Tabs */
+.hero { background: linear-gradient(135deg, rgba(176,38,255,0.2) 0%, rgba(0,210,255,0.1) 100%); padding: 40px 20px 55px; text-align: center; position: relative; border-bottom: 1px solid var(--border-color); margin-bottom: 40px; }
+.hero-title { font-family: 'Mitr', sans-serif; font-size: 32px; font-weight: 700; color: #fff; text-shadow: 0 0 15px rgba(176,38,255,0.4); }
+.tab-container { position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); display: flex; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 30px; padding: 4px; width: 260px; z-index: 10; }
+.tab-btn { flex: 1; padding: 8px 0; border-radius: 25px; border: none; font-size: 13px; font-weight: 600; cursor: pointer; background: transparent; color: #9872A3; }
+.tab-btn.active { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; }
 
-/* HERO & TABS */
-.hero {
-  background: linear-gradient(135deg, rgba(176,38,255,0.2) 0%, rgba(0,210,255,0.1) 100%);
-  padding: 40px 20px 55px; text-align: center; position: relative; border-bottom: 1px solid var(--border-color); margin-bottom: 40px; box-shadow: 0 4px 30px rgba(176,38,255,0.1);
-}
-.hero-title { font-family: 'Mitr', sans-serif; font-size: 32px; font-weight: 700; color: #fff; margin-bottom: 4px; text-shadow: 0 0 15px rgba(176,38,255,0.4); }
-.hero-sub { font-size: 13px; color: #9872A3; }
-
-.tab-container {
-  position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); display: flex; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 30px; padding: 4px; width: 260px; z-index: 10; box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-}
-.tab-btn { flex: 1; padding: 8px 0; border-radius: 25px; border: none; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; background: transparent; color: #9872A3; }
-.tab-btn.active { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; box-shadow: 0 2px 10px rgba(176,38,255,0.3); }
-
-/* CONTENT & CARDS */
-.content { max-width: 600px; margin: 0 auto; padding: 0 20px 50px; position: relative; z-index: 5; }
-.tab-content { display: none; animation: fadeIn 0.3s ease; }
-.tab-content.active { display: block; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-.sh { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding: 0 5px; }
-.sh-left { display: flex; align-items: center; gap: 12px; }
-.sh-line { width: 4px; height: 22px; background: linear-gradient(180deg, var(--primary), var(--secondary)); border-radius: 4px; }
-.sh h2 { font-size: 18px; font-weight: 700; color: #9872A3; }
-
-.btn-more { background: rgba(255,255,255,0.2); border: 1.5px dashed #9872A3; color: #9872A3; padding: 5px 15px; border-radius: 12px; font-size: 11px; cursor: pointer; font-weight: 600; }
-
+/* Grid & Cards */
+.content { max-width: 600px; margin: 0 auto; padding: 0 20px 50px; }
 .grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
-.item-card { background: var(--bg-card); border: 1.5px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 16px; position: relative; cursor: pointer; transition: all 0.2s ease; display: flex; flex-direction: column; }
+.item-card { background: var(--bg-card); border: 1.5px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 16px; cursor: pointer; display: flex; flex-direction: column; transition: 0.2s; }
 .item-card.selected { border-color: var(--primary); background: linear-gradient(145deg, rgba(176,38,255,0.1) 0%, var(--bg-card) 100%); }
 .card-icon { width: 100%; aspect-ratio: 1/1; border-radius: 12px; margin-bottom: 10px; object-fit: cover; }
-.card-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; color: #9872A3; }
-/* เปลี่ยนสีราคาบนหน้าการ์ดเป็นสีขาวตามสั่ง */
+.card-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.card-detail { font-size: 11px; color: #9872A3; opacity: 0.8; margin-bottom: 10px; line-height: 1.2; }
 .card-price { align-self: flex-start; background: rgba(152, 116, 162, 0.6); color: #fff; font-weight: 600; font-size: 13px; padding: 4px 10px; border-radius: 8px; }
 
-/* BOTTOM BAR เปลี่ยนสีพื้นหลังเป็น #9774A2 และ z-index 4000 */
-.bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #9774A2; backdrop-filter: blur(15px); border-top: 1px solid var(--primary); padding: 15px 24px; display: flex; justify-content: space-between; align-items: center; transform: translateY(100%); transition: 0.3s; z-index: 4000; box-shadow: 0 -5px 20px rgba(0,0,0,0.15); }
+/* Bottom Bar */
+.bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #9774A2; border-top: 1px solid var(--primary); padding: 15px 24px; display: flex; justify-content: space-between; align-items: center; transform: translateY(100%); transition: 0.3s; z-index: 4000; }
 .bottom-bar.active { transform: translateY(0); }
 .bb-total { font-size: 20px; font-weight: 700; color: #fff; }
-.bb-btn { background: linear-gradient(135deg, var(--primary), #d946ef); color: #fff; border: none; border-radius: 25px; padding: 10px 24px; font-size: 16px; font-weight: 600; cursor: pointer; }
+.bb-btn { background: linear-gradient(135deg, var(--primary), #d946ef); color: #fff; border: none; border-radius: 25px; padding: 10px 24px; font-weight: 600; cursor: pointer; }
 
+/* Modal */
 .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 5000; display: none; justify-content: center; align-items: center; }
 .modal-box { background: var(--bg-card); border: 2px solid var(--primary); border-radius: 20px; width: 90%; max-width: 400px; padding: 24px; color: #9872A3; }
-.modal-divider { border-top: 1px dashed rgba(176,38,255,0.4); margin: 15px 0; }
 </style>
 </head>
 <body>
 
 <div id="mainPage">
-    <div class="bg-glow-1"></div><div class="bg-glow-2"></div><div id="pts"></div>
     <div class="hero">
       <div class="hero-title">องุ่นหวาน Studio💖</div>
-      <div class="hero-sub">จำหน่ายฟอนต์ลายมือหลากหลายเครือ🪽</div>
       <div class="tab-container">
-        <button class="tab-btn active" id="btn-info" onclick="switchTab('info')">แนะนำ</button>
-        <button class="tab-btn" id="btn-products" onclick="switchTab('products')">สินค้า</button>
+        <button class="tab-btn active" onclick="switchTab('info')">แนะนำ</button>
+        <button class="tab-btn" onclick="switchTab('products')">สินค้า</button>
       </div>
     </div>
     
     <div class="content">
-      <div id="tab-info" class="tab-content active">
-        <div class="sh"><div class="sh-left"><div class="sh-line"></div><h2>แนะนำพิเศษ</h2></div></div>
+      <div id="tab-info" style="display: block;">
         <div class="grid-container" id="recommendGrid"></div>
       </div>
-      <div id="tab-products" class="tab-content">
+      <div id="tab-products" style="display: none;">
         <div id="productSections"></div>
       </div>
     </div>
@@ -110,87 +68,95 @@ body {
 <div id="fullPageCategory">
     <div class="back-header">
         <button class="back-btn" onclick="closeFullPage()">←</button>
-        <h2 id="fullPageTitle" style="color:#9872A3; font-size:20px;"></h2>
+        <h2 id="fullPageTitle" style="font-size:20px;"></h2>
     </div>
     <div class="grid-container" id="fullPageGrid"></div>
 </div>
 
 <div class="bottom-bar" id="bottomBar">
   <div class="bb-info">
-    <div class="bb-count" id="cartCount" style="color:#fff; opacity:0.9;">เลือก 0 รายการ</div>
-    <div class="bb-total"><span>฿</span><span id="cartTotal">0</span></div>
+    <div id="cartCount" style="color:#fff; font-size:12px;">เลือก 0 รายการ</div>
+    <div class="bb-total">฿<span id="cartTotal">0</span></div>
   </div>
   <button class="bb-btn" onclick="openSummary()">สั่งเลย ✨</button>
 </div>
 
 <div class="modal-overlay" id="summaryModal">
   <div class="modal-box">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-      <div style="font-weight:600; color:#fff;">🛒 สรุปรายการสั่งซื้อ</div>
+    <div style="display:flex; justify-content:space-between; margin-bottom:15px; color:#fff;">
+      <div style="font-weight:600;">🛒 รายการที่เลือก</div>
       <div onclick="closeSummary()" style="cursor:pointer; font-size:24px;">×</div>
     </div>
     <div id="modalItemsList" style="max-height:250px; overflow-y:auto;"></div>
-    <div class="modal-divider"></div>
-    <div style="display:flex; justify-content:space-between; align-items:center; font-weight:600; color:#fff;">
-      <span>ยอดที่ต้องชำระ:</span>
-      <span style="font-size:24px; color:#fff;">฿<span id="modalTotalPrice">0</span></span>
+    <div style="border-top: 1px dashed #fff; margin:15px 0; padding-top:10px; display:flex; justify-content:space-between; color:#fff;">
+      <span>รวมทั้งสิ้น:</span>
+      <span style="font-size:20px; font-weight:700;">฿<span id="modalTotalPrice">0</span></span>
     </div>
-    <button onclick="checkout()" style="width:100%; background:#00d300; border:none; color:#fff; padding:14px; border-radius:12px; margin-top:20px; font-weight:600; cursor:pointer;">💬 คัดลอก & สั่งผ่าน LINE</button>
+    <button onclick="checkout()" style="width:100%; background:#00d300; border:none; color:#fff; padding:14px; border-radius:12px; font-weight:600; cursor:pointer;">💬 คัดลอก & สั่งผ่าน LINE</button>
   </div>
 </div>
 
 <script>
-  // [จุดแก้ไขที่ 1] เปลี่ยนชื่อ ราคา รูปภาพ และรายละเอียดสินค้า และจำนวน (count) ตรงนี้
+  // [จุดแก้ไขหลัก] ใส่ข้อมูลสินค้าแต่ละชิ้นแยกกันตรงนี้
   const categories = [
     { 
       id: 'cat1', 
       name: 'ฟอนต์เครือ GRP', 
-      price: 89, 
-      count: 50, // จำนวนสินค้าของหมวดนี้
-      images: ['https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png'],
-      detail: 'ลิขสิทธิ์แท้ ใช้งานได้พาณิชย์'
+      products: [
+        { id: 'p1', name: 'มนตรา คลาสสิก', price: 89, detail: 'หัวกลม อ่านง่าย', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png' },
+        { id: 'p2', name: 'มนตรา ทินนี่', price: 69, detail: 'เส้นบาง สไตล์เกาหลี', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png' },
+        { id: 'p3', name: 'มนตรา โบล์ด', price: 99, detail: 'ตัวหนา เน้นคำ', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png' },
+        { id: 'p4', name: 'มนตรา มินิมอล', price: 79, detail: 'เรียบๆ สบายตา', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png' },
+        { id: 'p5', name: 'มนตรา น่ารัก', price: 85, detail: 'ฟอนต์ลายมือตะมุตะมิ', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png' }
+      ]
     },
     { 
       id: 'cat2', 
       name: 'ฟอนต์เครือ DEKDEC', 
-      price: 99, 
-      count: 200, // จำนวนสินค้าของหมวดนี้
-      images: ['https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png'],
-      detail: 'รวมเชิงพาณิชย์แล้ว'
+      products: [
+        { id: 'd1', name: 'เด็กเดค 01', price: 99, detail: 'เชิงพาณิชย์คุ้มๆ', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png' },
+        { id: 'd2', name: 'เด็กเดค วินเทจ', price: 129, detail: 'สไตล์ย้อนยุค', img: 'https://s.imgz.io/2026/03/25/-49_20251015225114e22988d6bdb69391.png' }
+      ]
     }
   ];
 
   let cart = [];
 
   function renderAll() {
-    // หน้าแนะนำ
-    document.getElementById('recommendGrid').innerHTML = categories.map(c => createCardHtml({id:c.id+'-rec', cat:c.name, name:c.name+' (แนะนำ)', price:c.price, icon:c.images[0], detail:c.detail})).join('');
-    // หน้าสินค้าทั้งหมด
-    document.getElementById('productSections').innerHTML = categories.map(c => `
-      <div class="sh" style="margin:20px 0;"><div class="sh-left"><h2>${c.name}</h2></div><button class="btn-more" onclick="openFullPage('${c.id}')">ดูเพิ่มเติม</button></div>
-      <div class="grid-container">${createCardHtml({id:c.id+'-1', cat:c.name, name:c.name+' #1', price:c.price, icon:c.images[0], detail:c.detail})}</div>
-    `).join('');
+    // โชว์สินค้าแนะนำ (ชิ้นแรกของแต่ละหมวด)
+    document.getElementById('recommendGrid').innerHTML = categories.map(c => createCardHtml(c.products[0], c.name)).join('');
+    
+    // โชว์หมวดหมู่สินค้า (หน้าหลักโชว์แค่ 4 ชิ้นแรก)
+    let html = '';
+    categories.forEach(c => {
+      const displayItems = c.products.slice(0, 4); // ดึงมาแค่ 4 ชิ้น
+      html += `
+        <div style="display:flex; justify-content:space-between; align-items:center; margin:20px 0 10px;">
+          <h2 style="font-size:18px;">${c.name}</h2>
+          <button style="background:none; border:1px dashed #9872A3; color:#9872A3; padding:4px 12px; border-radius:8px; font-size:11px;" onclick="openFullPage('${c.id}')">ดูเพิ่มเติม</button>
+        </div>
+        <div class="grid-container">${displayItems.map(p => createCardHtml(p, c.name)).join('')}</div>
+      `;
+    });
+    document.getElementById('productSections').innerHTML = html;
   }
 
-  function createCardHtml(p) {
+  function createCardHtml(p, catName) {
     const isSel = cart.find(i => i.id === p.id) ? 'selected' : '';
-    return `<div class="item-card ${isSel}" data-id="${p.id}" onclick="toggleItem('${p.id}','${p.cat}','${p.name}',${p.price},'${p.icon}')">
-      <img src="${p.icon}" class="card-icon">
-      <div class="card-title">${p.name}</div>
-      <div style="font-size:11px; color:#9872A3; margin-bottom:10px; opacity:0.8;">${p.detail || ''}</div>
-      <div class="card-price">฿${p.price}</div>
-    </div>`;
+    return `
+      <div class="item-card ${isSel}" data-id="${p.id}" onclick="toggleItem('${p.id}','${catName}','${p.name}',${p.price})">
+        <img src="${p.img}" class="card-icon">
+        <div class="card-title">${p.name}</div>
+        <div class="card-detail">${p.detail}</div>
+        <div class="card-price">฿${p.price}</div>
+      </div>`;
   }
 
   function openFullPage(catId) {
     const cat = categories.find(c => c.id === catId);
     document.getElementById('fullPageTitle').innerText = cat.name;
-    let html = '';
-    // [จุดแก้ไขที่ 2] ใช้จำนวนสินค้า (cat.count) ตามที่ระบุไว้ด้านบน
-    for(let i=1; i <= cat.count; i++) {
-        html += createCardHtml({id:`${catId}-${i}`, cat:cat.name, name:`${cat.name} #${i}`, price:cat.price, icon:cat.images[0], detail:cat.detail});
-    }
-    document.getElementById('fullPageGrid').innerHTML = html;
+    // แสดงสินค้า "ทุกรายการ" ในหมวดนั้น
+    document.getElementById('fullPageGrid').innerHTML = cat.products.map(p => createCardHtml(p, cat.name)).join('');
     document.getElementById('mainPage').style.display = 'none';
     document.getElementById('fullPageCategory').style.display = 'block';
     window.scrollTo(0,0);
@@ -201,7 +167,7 @@ body {
     document.getElementById('mainPage').style.display = 'block';
   }
 
-  function toggleItem(id, cat, name, price, icon) {
+  function toggleItem(id, cat, name, price) {
     const idx = cart.findIndex(i => i.id === id);
     if(idx > -1) { cart.splice(idx, 1); } else { cart.push({id, cat, name, price}); }
     document.querySelectorAll(`[data-id="${id}"]`).forEach(el => el.classList.toggle('selected'));
@@ -218,36 +184,31 @@ body {
   }
 
   function switchTab(t) {
-    document.getElementById('btn-info').classList.toggle('active', t==='info');
-    document.getElementById('btn-products').classList.toggle('active', t==='products');
-    document.getElementById('tab-info').classList.toggle('active', t==='info');
-    document.getElementById('tab-products').classList.toggle('active', t==='products');
+    document.getElementById('tab-info').style.display = t === 'info' ? 'block' : 'none';
+    document.getElementById('tab-products').style.display = t === 'products' ? 'block' : 'none';
+    const btns = document.querySelectorAll('.tab-btn');
+    btns[0].classList.toggle('active', t==='info');
+    btns[1].classList.toggle('active', t==='products');
   }
 
   function openSummary() {
-    let html = ''; let total = 0;
-    cart.forEach(item => {
-      html += `<div style="display:flex; justify-content:space-between; margin-bottom:10px; color:#fff;"><span>• ${item.name}</span><span>฿${item.price}</span></div>`;
-      total += item.price;
-    });
+    let html = '';
+    cart.forEach(i => { html += `<div style="display:flex; justify-content:space-between; margin-bottom:8px; color:#fff; font-size:14px;"><span>• ${i.name}</span><span>฿${i.price}</span></div>`; });
     document.getElementById('modalItemsList').innerHTML = html;
-    document.getElementById('modalTotalPrice').innerText = total;
+    document.getElementById('modalTotalPrice').innerText = cart.reduce((s, i) => s + i.price, 0);
     document.getElementById('summaryModal').style.display = 'flex';
   }
 
   function closeSummary() { document.getElementById('summaryModal').style.display = 'none'; }
 
   function checkout() {
-    let total = 0; let text = "สรุปรายการสั่งซื้อ\n\n";
-    cart.forEach(item => { text += `สินค้า: ${item.cat} - ${item.name}\nราคา: ${item.price} บาท\n\n`; total += item.price; });
-    text += `--------------------\nยอดที่ต้องชำระทั้งหมด: ${total} บาท\n\nขอบคุณที่ไว้วางใจค่ะ`;
+    let text = "สรุปรายการสั่งซื้อ\n\n";
+    cart.forEach(i => { text += `• ${i.cat}: ${i.name} (${i.price}.-)\n`; });
+    text += `\nยอดรวม: ${cart.reduce((s, i) => s + i.price, 0)} บาท\nขอบคุณค่ะ`;
     const temp = document.createElement("textarea"); temp.value = text; document.body.appendChild(temp);
     temp.select(); document.execCommand("copy"); document.body.removeChild(temp);
     window.location.href = "https://lin.ee/vHRDLCC";
   }
-
-  const Pt = document.getElementById('pts');
-  ['✦','★','✨'].forEach(e => { for(let i=0; i<6; i++){ const d = document.createElement('div'); d.className='pt'; d.textContent=e; d.style.cssText=`left:${Math.random()*100}vw;font-size:12px;color:#9872A3;animation-duration:15s;animation-delay:-${Math.random()*20}s;`; Pt.appendChild(d); } });
 
   renderAll();
 </script>
