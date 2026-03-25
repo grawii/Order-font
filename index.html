@@ -213,9 +213,10 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg-main); color: #987
   function closeSummary() { document.getElementById('summaryModal').style.display = 'none'; }
 
   function checkout() {
-    let text = "สรุปรายการสั่งซื้อ\n\n";
+    let text = "สรุปรายการสั่งซื้อ💖\n\n";
     cart.forEach(i => { text += `• ${i.cat}: ${i.name} (${i.price}.-)\n`; });
-    text += `\nยอดรวม: ${cart.reduce((s, i) => s + i.price, 0)} บาท\nขอบคุณค่ะ`;
+    text += `\nยอดรวม: ${cart.reduce((s, i) => s + i.price, 0)} บาท
+    \n--------------------\nขอบคุณที่มาอุดหนุนร้านองุ่นนะคะ⭐️\nรอองุ่นตอบกลับภายใน 5-10 นาทีน้า✨`;
     const temp = document.createElement("textarea"); temp.value = text; document.body.appendChild(temp);
     temp.select(); document.execCommand("copy"); document.body.removeChild(temp);
     window.location.href = "https://lin.ee/vHRDLCC";
