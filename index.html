@@ -8,7 +8,7 @@
 <style>
 /* --- CSS ต้นฉบับคงเดิม --- */
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-:root { --primary: #FCFFFF; --secondary: #DCD2F5; --bg-main: #EDE2FB; --bg-card: #EADBFB; --border-color: rgba(176,38,255,0.25); }
+:root { --primary: #FFDBEF; --secondary: #DCD2F5; --bg-main: #EDE2FB; --bg-card: #EADBFB; --border-color: rgba(176,38,255,0.25); }
 body { font-family: 'Kanit', sans-serif; background: var(--bg-main); color: #9872A3; padding-bottom: 110px; overflow-x: hidden; }
 
 /* หน้า Full Page (Refresh View) */
@@ -83,16 +83,16 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg-main); color: #987
 
 <div class="modal-overlay" id="summaryModal">
   <div class="modal-box">
-    <div style="display:flex; justify-content:space-between; margin-bottom:15px; color:#fff;">
+    <div style="display:flex; justify-content:space-between; margin-bottom:15px; color:#9771A2;">
       <div style="font-weight:600;">🛒 รายการที่เลือก</div>
       <div onclick="closeSummary()" style="cursor:pointer; font-size:24px;">×</div>
     </div>
     <div id="modalItemsList" style="max-height:250px; overflow-y:auto;"></div>
-    <div style="border-top: 1px dashed #fff; margin:15px 0; padding-top:10px; display:flex; justify-content:space-between; color:#fff;">
+    <div style="border-top: 1px dashed #9771A2; margin:15px 0; padding-top:10px; display:flex; justify-content:space-between; color:#9771A2;">
       <span>รวมทั้งสิ้น:</span>
       <span style="font-size:20px; font-weight:700;">฿<span id="modalTotalPrice">0</span></span>
     </div>
-    <button onclick="checkout()" style="width:100%; background:#00d300; border:none; color:#fff; padding:14px; border-radius:12px; font-weight:600; cursor:pointer;">💬 คัดลอก & สั่งผ่าน LINE</button>
+    <button onclick="checkout()" style="width:100%; background:#00d300; border:none; color:#9771A2; padding:14px; border-radius:12px; font-weight:600; cursor:pointer;">💬 คัดลอก & สั่งผ่าน LINE</button>
   </div>
 </div>
 
@@ -193,7 +193,7 @@ body { font-family: 'Kanit', sans-serif; background: var(--bg-main); color: #987
 
   function openSummary() {
     let html = '';
-    cart.forEach(i => { html += `<div style="display:flex; justify-content:space-between; margin-bottom:8px; color:#fff; font-size:14px;"><span>• ${i.name}</span><span>฿${i.price}</span></div>`; });
+    cart.forEach(i => { html += `<div style="display:flex; justify-content:space-between; margin-bottom:8px; color:#9771A2; font-size:14px;"><span>• ${i.name}</span><span>฿${i.price}</span></div>`; });
     document.getElementById('modalItemsList').innerHTML = html;
     document.getElementById('modalTotalPrice').innerText = cart.reduce((s, i) => s + i.price, 0);
     document.getElementById('summaryModal').style.display = 'flex';
